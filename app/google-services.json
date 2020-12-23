@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "641148296692",
+    "project_id": "bookingmanagementgad",
+    "storage_bucket": "bookingmanagementgad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641148296692:android:33f334948bdc5c469c2da1",
+        "android_client_info": {
+          "package_name": "com.example.bookingmanagementgad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641148296692-nijmgt1m733vpai5a32v6c9e60djvorp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgHtSrJXld3WWK0GLybXRaYqoiEhPSuqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641148296692-nijmgt1m733vpai5a32v6c9e60djvorp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
