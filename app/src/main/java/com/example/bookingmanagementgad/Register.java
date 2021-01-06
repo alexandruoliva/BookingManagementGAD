@@ -52,8 +52,6 @@ public class Register extends AppCompatActivity {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("a fost apasat", "a fost apasat");
-
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
@@ -73,8 +71,8 @@ public class Register extends AppCompatActivity {
                 }
 
 //                if (!mPassword.equals(mConfirmPassword)) {
-//                    mPassword.setError("Password don't match.");
-//                    mConfirmPassword.setError("Password don't match.");
+//                    mPassword.setError("Passwords don't match.");
+//                    mConfirmPassword.setError("Passwords don't match.");
 //                    return;
 //                }
 
@@ -87,7 +85,7 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Register.this, "User created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                         } else {
                             Toast.makeText(Register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
