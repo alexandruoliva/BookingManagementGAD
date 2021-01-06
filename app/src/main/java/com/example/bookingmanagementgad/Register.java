@@ -3,7 +3,6 @@ package com.example.bookingmanagementgad;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,13 +21,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Register extends AppCompatActivity {
     EditText mFirstName, mLastName, mEmail, mPassword, mConfirmPassword;
     Button mRegisterButton;
-    TextView mLoginButton;
+    TextView mGoToLoginTextView;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
 
         mFirstName = findViewById(R.id.editTextFirstName);
@@ -38,15 +38,26 @@ public class Register extends AppCompatActivity {
         mConfirmPassword = findViewById(R.id.editTextPasswordConfirmRegister);
 
         mRegisterButton = findViewById(R.id.registerButton);
-        mLoginButton = findViewById(R.id.goToLoginPage);
+        mGoToLoginTextView = findViewById(R.id.goToLoginPage);
 
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBarRegister);
+
 
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
+
+        mGoToLoginTextView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {

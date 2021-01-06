@@ -9,17 +9,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
+    Button mLogoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.button);
+        mLogoutButton = findViewById(R.id.logoutButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Register.class);
