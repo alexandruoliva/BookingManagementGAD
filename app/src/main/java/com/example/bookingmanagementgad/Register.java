@@ -44,10 +44,10 @@ public class Register extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarRegister);
 
 
-        if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
+//        if (fAuth.getCurrentUser() != null) {
+//            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+//            finish();
+//        }
 
         mGoToLoginTextView.setOnClickListener(new View.OnClickListener() {
 
@@ -81,15 +81,16 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-//                if (!mPassword.equals(mConfirmPassword)) {
-//                    mPassword.setError("Passwords don't match.");
-//                    mConfirmPassword.setError("Passwords don't match.");
-//                    return;
-//                }
+                if (!mPassword.equals(mConfirmPassword)) {
+                    mPassword.setError("Passwords don't match.");
+                    mConfirmPassword.setError("Passwords don't match.");
+                    return;
+                }
 
                 progressBar.setVisibility(View.VISIBLE);
 
                 //register the user using FireBase
+
 
                 fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
