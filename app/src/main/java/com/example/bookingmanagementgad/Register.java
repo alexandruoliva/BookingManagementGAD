@@ -68,6 +68,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
+                String confirmPassword = mConfirmPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is required!");
@@ -84,7 +85,7 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                if (!mPassword.equals(mConfirmPassword)) {
+                if (!password.equals(confirmPassword)) {
                     mPassword.setError("Passwords don't match.");
                     mConfirmPassword.setError("Passwords don't match.");
                     return;
