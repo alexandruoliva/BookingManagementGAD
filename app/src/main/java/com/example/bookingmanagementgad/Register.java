@@ -47,10 +47,7 @@ public class Register extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarRegister);
 
 
-//        if (fAuth.getCurrentUser() != null) {
-//            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
-//            finish();
-//        }
+
 
         mGoToLoginTextView.setOnClickListener(new View.OnClickListener() {
 
