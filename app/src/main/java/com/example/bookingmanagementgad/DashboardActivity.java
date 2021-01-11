@@ -1,6 +1,7 @@
 package com.example.bookingmanagementgad;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,12 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        ft.replace(R.id.fragmentProfile, new ProfileFragment());
+        ft.commit();
+
         getSupportActionBar().hide();
         setContentView(R.layout.activity_dashboard);
         logOutButton = findViewById(R.id.button3);
