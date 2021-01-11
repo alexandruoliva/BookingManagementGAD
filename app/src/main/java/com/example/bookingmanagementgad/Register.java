@@ -47,8 +47,6 @@ public class Register extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarRegister);
 
 
-
-
         mGoToLoginTextView.setOnClickListener(new View.OnClickListener() {
 
             @Override
