@@ -107,38 +107,9 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // send email for verification
-                            FirebaseUser fUser = fAuth.getCurrentUser();
-                            fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(Register.this, "Verification email has been sent.", Toast.LENGTH_SHORT);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Register.this, "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT);
-                                }
-                            });
 
-                            //adding users data to our FireStore database
-                            userID = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fStore.collection("users").document(userID);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("lName", lastName);
-                            user.put("fName", firstName);
-                            user.put("email", email);
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSucces: user Profile is created for " + userID);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "onFailure: " + e.toString());
-                                }
-                            });
+                            populateUsersData(lastName, firstName, email);
+                            sendConfirmationMail();
 
                             Toast.makeText(Register.this, "User created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
@@ -151,5 +122,40 @@ public class Register extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void populateUsersData(String lastName, String firstName, String email) {
+        userID = fAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = fStore.collection("users").document(userID);
+        Map<String, Object> user = new HashMap<>();
+        user.put("lName", lastName);
+        user.put("fName", firstName);
+        user.put("email", email);
+        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "onSucces: user Profile is created for " + userID);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "onFailure: " + e.toString());
+            }
+        });
+    }
+
+    private void sendConfirmationMail() {
+        FirebaseUser fUser = fAuth.getCurrentUser();
+        fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(Register.this, "Verification email has been sent.", Toast.LENGTH_SHORT);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Register.this, "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT);
+            }
+        });
     }
 }
