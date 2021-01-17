@@ -33,21 +33,31 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         FirebaseUser fUser = fAuth.getCurrentUser();
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
         String userId;
+        userId = fAuth.getCurrentUser().getUid();
 
+        DocumentReference documentReference = fStore.collection("users").document(userId);
+
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         TextView mVerifyMessage = (TextView) view.findViewById(R.id.emailNotVerifiedTextView);
         Button mVerifyButton = (Button) view.findViewById(R.id.verifyEmailButton);
         TextView mFirstNameTextView = (TextView) view.findViewById(R.id.textViewDashboardFirstName);
         TextView mLastNameTextView = (TextView) view.findViewById(R.id.textViewDashboardLastName);
         TextView mEmailAddressTextView = (TextView) view.findViewById(R.id.textViewDashboardEmail);
 
-        userId = fAuth.getCurrentUser().getUid();
+        fetchUserData(documentReference, mFirstNameTextView, mLastNameTextView, mEmailAddressTextView);
 
-        DocumentReference documentReference = fStore.collection("users").document(userId);
+        displayGraphicaElementsIfEmailNotVerified(fUser, mVerifyMessage, mVerifyButton);
+
+        return view;
+    }
+
+    private void fetchUserData(DocumentReference documentReference, TextView mFirstNameTextView, TextView mLastNameTextView, TextView mEmailAddressTextView) {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -56,11 +66,9 @@ public class ProfileFragment extends Fragment {
                 mEmailAddressTextView.setText(documentSnapshot.getString("email"));
             }
         });
+    }
 
-
-
-
-        //if the user is not verified, display the button/text to confirm mail
+    private void displayGraphicaElementsIfEmailNotVerified(FirebaseUser fUser, TextView mVerifyMessage, Button mVerifyButton) {
         if (!fUser.isEmailVerified()) {
             mVerifyMessage.setVisibility(View.VISIBLE);
             mVerifyButton.setVisibility(View.VISIBLE);
@@ -82,8 +90,6 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
-
-        return view;
     }
 
 }
