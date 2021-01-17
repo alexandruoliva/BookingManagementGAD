@@ -17,8 +17,16 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Text;
+
+import java.util.concurrent.Executor;
 
 public class ProfileFragment extends Fragment {
 
@@ -28,11 +36,31 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         FirebaseUser fUser = fAuth.getCurrentUser();
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+        String userId;
 
         TextView mVerifyMessage = (TextView) view.findViewById(R.id.emailNotVerifiedTextView);
         Button mVerifyButton = (Button) view.findViewById(R.id.verifyEmailButton);
+        TextView mFirstNameTextView = (TextView) view.findViewById(R.id.textViewDashboardFirstName);
+        TextView mLastNameTextView = (TextView) view.findViewById(R.id.textViewDashboardLastName);
+        TextView mEmailAddressTextView = (TextView) view.findViewById(R.id.textViewDashboardEmail);
 
-        //if the user is not verified, display the message
+        userId = fAuth.getCurrentUser().getUid();
+
+        DocumentReference documentReference = fStore.collection("users").document(userId);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                mFirstNameTextView.setText(documentSnapshot.getString("fName"));
+                mLastNameTextView.setText(documentSnapshot.getString("lName"));
+                mEmailAddressTextView.setText(documentSnapshot.getString("email"));
+            }
+        });
+
+
+
+
+        //if the user is not verified, display the button/text to confirm mail
         if (!fUser.isEmailVerified()) {
             mVerifyMessage.setVisibility(View.VISIBLE);
             mVerifyButton.setVisibility(View.VISIBLE);
@@ -54,7 +82,6 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
-
 
         return view;
     }

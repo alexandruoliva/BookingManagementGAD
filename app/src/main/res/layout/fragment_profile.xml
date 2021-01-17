@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,12 +9,11 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="Profile details:"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewDashboardLastName"
         app:layout_constraintTop_toBottomOf="@+id/verifyEmailButton"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -44,51 +42,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01999998" />
 
-    <EditText
-        android:id="@+id/editTextPersonFirstName"
+    <TextView
+        android:id="@+id/textViewDashboardLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:editable="false"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName"
+        android:text="Last name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewDashboardFirstName"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.00999999" />
-
-    <EditText
-        android:id="@+id/editTextPersonLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:editable="false"
-        android:ems="10"
-        android:hint="Last Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPersonFirstName"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editTextPersonEmailAddress"
+    <TextView
+        android:id="@+id/textViewDashboardFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:editable="false"
-        android:ems="10"
-        android:hint="Email address"
-        android:inputType="textEmailAddress"
+        android:text="First name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewDashboardEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDashboardLastName"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewDashboardEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-mail address"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPersonLastName"
-        app:layout_constraintVertical_bias="0.00999999" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDashboardFirstName"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
