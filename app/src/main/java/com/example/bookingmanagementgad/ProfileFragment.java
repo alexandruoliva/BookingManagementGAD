@@ -46,8 +46,8 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         TextView mVerifyMessage = (TextView) view.findViewById(R.id.emailNotVerifiedTextView);
         Button mVerifyButton = (Button) view.findViewById(R.id.verifyEmailButton);
-        TextView mFirstNameTextView = (TextView) view.findViewById(R.id.textViewDashboardFirstName);
-        TextView mLastNameTextView = (TextView) view.findViewById(R.id.textViewDashboardLastName);
+        EditText mFirstNameTextView = (EditText) view.findViewById(R.id.editTextDashboardFirstName);
+        EditText mLastNameTextView = (EditText) view.findViewById(R.id.editTextDashboardLastName);
         TextView mEmailAddressTextView = (TextView) view.findViewById(R.id.textViewDashboardEmail);
 
         fetchUserData(documentReference, mFirstNameTextView, mLastNameTextView, mEmailAddressTextView);
