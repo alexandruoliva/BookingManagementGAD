@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bookingmanagementgad.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,8 +25,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Register extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
@@ -127,10 +126,8 @@ public class Register extends AppCompatActivity {
     private void populateUsersData(String lastName, String firstName, String email) {
         userID = fAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userID);
-        Map<String, Object> user = new HashMap<>();
-        user.put("lName", lastName);
-        user.put("fName", firstName);
-        user.put("email", email);
+        User user = new User(lastName, firstName, email);
+
         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

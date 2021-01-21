@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.bookingmanagementgad.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,12 +25,6 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Executor;
 
 public class ProfileFragment extends Fragment {
 
@@ -72,10 +67,8 @@ public class ProfileFragment extends Fragment {
                 String lastName = mLastNameTextEdit.getText().toString();
                 String email = mEmailAddressTextView.getText().toString();
 
-                Map<String, Object> user = new HashMap<>();
-                user.put("fName", firstName);
-                user.put("lName", lastName);
-                user.put("email", email);
+                User user = new User(firstName, lastName, email);
+
                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -98,9 +91,11 @@ public class ProfileFragment extends Fragment {
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                mFirstNameTextEdit.setText(documentSnapshot.getString("fName"));
-                mLastNameTextEdit.setText(documentSnapshot.getString("lName"));
-                mEmailAddressTextView.setText(documentSnapshot.getString("email"));
+                User user = documentSnapshot.toObject(User.class);
+
+                mFirstNameTextEdit.setText(user.getFirstName());
+                mLastNameTextEdit.setText(user.getLastName());
+                mEmailAddressTextView.setText(user.getEmail() );
             }
         });
     }
