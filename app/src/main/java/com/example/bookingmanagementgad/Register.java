@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -35,6 +36,7 @@ public class Register extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseFirestore fStore;
     private String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,6 @@ public class Register extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBarRegister);
 
-
         mGoToLoginTextView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -65,7 +66,6 @@ public class Register extends AppCompatActivity {
                 finish();
             }
         });
-
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +127,9 @@ public class Register extends AppCompatActivity {
         userID = fAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userID);
         User user = new User(lastName, firstName, email);
+        CollectionReference userRef = fStore.collection("users");
+        //add a sub-collection named 'bookings' for each newly created user
+        userRef.document(userID).collection("bookings").add(user);
 
         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

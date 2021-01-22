@@ -15,6 +15,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private Button logOutButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
