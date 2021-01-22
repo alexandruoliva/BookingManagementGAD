@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -29,27 +30,27 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = "ProfileFragment";
+    private TextView mVerifyMessage, mEmailAddressTextView;
+    private Button mVerifyButton, mUpdateUser;
+    private EditText mFirstNameTextEdit, mLastNameTextEdit;
+    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    private FirebaseUser fUser = fAuth.getCurrentUser();
+    private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+    private String userId = fAuth.getCurrentUser().getUid();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        FirebaseUser fUser = fAuth.getCurrentUser();
-        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-        String userId;
-        userId = fAuth.getCurrentUser().getUid();
-
         DocumentReference documentReference = fStore.collection("users").document(userId);
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        TextView mVerifyMessage = (TextView) view.findViewById(R.id.emailNotVerifiedTextView);
-        Button mVerifyButton = (Button) view.findViewById(R.id.verifyEmailButton);
-        Button mUpdateUser = (Button) view.findViewById(R.id.buttonUpdateProfileFragment);
-        EditText mFirstNameTextEdit = (EditText) view.findViewById(R.id.editTextDashboardFirstName);
-        EditText mLastNameTextEdit = (EditText) view.findViewById(R.id.editTextDashboardLastName);
-        TextView mEmailAddressTextView = (TextView) view.findViewById(R.id.textViewDashboardEmail);
+        mVerifyMessage = (TextView) view.findViewById(R.id.emailNotVerifiedTextView);
+        mVerifyButton = (Button) view.findViewById(R.id.verifyEmailButton);
+        mUpdateUser = (Button) view.findViewById(R.id.buttonUpdateProfileFragment);
+        mFirstNameTextEdit = (EditText) view.findViewById(R.id.editTextDashboardFirstName);
+        mLastNameTextEdit = (EditText) view.findViewById(R.id.editTextDashboardLastName);
+        mEmailAddressTextView = (TextView) view.findViewById(R.id.textViewDashboardEmail);
+//        CollectionReference userRef = db.collection("Notebook");
 
         fetchUserData(documentReference, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
         updateUserProfile(fAuth, documentReference, mUpdateUser, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);

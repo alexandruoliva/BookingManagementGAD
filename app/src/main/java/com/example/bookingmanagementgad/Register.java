@@ -28,13 +28,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Register extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
-    EditText mFirstName, mLastName, mEmail, mPassword, mConfirmPassword;
-    Button mRegisterButton;
-    TextView mGoToLoginTextView;
-    FirebaseAuth fAuth;
-    ProgressBar progressBar;
-    FirebaseFirestore fStore;
-    String userID;
+    private EditText mFirstName, mLastName, mEmail, mPassword, mConfirmPassword;
+    private Button mRegisterButton;
+    private TextView mGoToLoginTextView;
+    private FirebaseAuth fAuth;
+    private ProgressBar progressBar;
+    private FirebaseFirestore fStore;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

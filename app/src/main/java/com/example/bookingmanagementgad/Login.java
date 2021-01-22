@@ -24,12 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
-    EditText mEmail, mPassword;
-    Button mLoginButton;
-    TextView mGoToRegisterButton, mTextViewForgotPassword;
-    ProgressBar progressBar;
-    FirebaseAuth fAuth;
-
+    private EditText mEmail, mPassword;
+    private Button mLoginButton;
+    private TextView mGoToRegisterButton, mTextViewForgotPassword;
+    private ProgressBar progressBar;
+    private FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
