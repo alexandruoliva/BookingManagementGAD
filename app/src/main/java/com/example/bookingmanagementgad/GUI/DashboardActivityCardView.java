@@ -2,6 +2,7 @@ package com.example.bookingmanagementgad.GUI;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +22,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class DashboardActivityCardView extends AppCompatActivity {
 
-    private Button logOutButton;
-    private TextView titleDashboard;
+    private Button mLogOutButton;
+    private TextView mTitleDashboard;
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private FirebaseUser fUser = fAuth.getCurrentUser();
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private String userId = fAuth.getCurrentUser().getUid();
+    private CardView mProfileCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,9 @@ public class DashboardActivityCardView extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_dashboard_card_view);
 
-        logOutButton = findViewById(R.id.logoutButtonDashboard);
-        titleDashboard = findViewById(R.id.userTitleTextViewDashboard);
+        mLogOutButton = findViewById(R.id.logoutButtonDashboard);
+        mTitleDashboard = findViewById(R.id.userTitleTextViewDashboard);
+        mProfileCardView = findViewById(R.id.profileCardView);
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
 
@@ -43,16 +46,26 @@ public class DashboardActivityCardView extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 User user = documentSnapshot.toObject(User.class);
-                titleDashboard.setText("Welcome back "+ user.getFirstName().toString()+" !");
+                mTitleDashboard.setText("Welcome back " + user.getFirstName().toString() + " !");
             }
         });
 
-        logOutButton.setOnClickListener(new View.OnClickListener() {
+        mLogOutButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), Login.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        mProfileCardView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);
                 finish();
             }

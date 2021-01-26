@@ -28,7 +28,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
     private EditText mFirstName, mLastName, mEmail, mPassword, mConfirmPassword;
     private Button mRegisterButton;
@@ -62,7 +62,7 @@ public class Register extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -111,10 +111,10 @@ public class Register extends AppCompatActivity {
                             populateUsersData(lastName, firstName, email);
                             sendConfirmationMail();
 
-                            Toast.makeText(Register.this, "User created.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "User created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), DashboardActivityCardView.class));
                         } else {
-                            Toast.makeText(Register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
@@ -150,12 +150,12 @@ public class Register extends AppCompatActivity {
         fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(Register.this, "Verification email has been sent.", Toast.LENGTH_SHORT);
+                Toast.makeText(RegisterActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Register.this, "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT);
+                Toast.makeText(RegisterActivity.this, "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT);
             }
         });
     }
