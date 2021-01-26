@@ -28,7 +28,7 @@ public class DashboardActivityCardView extends AppCompatActivity {
     private FirebaseUser fUser = fAuth.getCurrentUser();
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private String userId = fAuth.getCurrentUser().getUid();
-    private CardView mProfileCardView;
+    private CardView mProfileCardView, mNewBookingCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class DashboardActivityCardView extends AppCompatActivity {
         mLogOutButton = findViewById(R.id.logoutButtonDashboard);
         mTitleDashboard = findViewById(R.id.userTitleTextViewDashboard);
         mProfileCardView = findViewById(R.id.profileCardView);
+        mNewBookingCardView = findViewById(R.id.addNewBookingCardView);
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
 
@@ -66,6 +67,16 @@ public class DashboardActivityCardView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        mNewBookingCardView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NewBookingActivity.class);
                 startActivity(intent);
                 finish();
             }
