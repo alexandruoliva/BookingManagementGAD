@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
 
         if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+            startActivity(new Intent(getApplicationContext(), DashboardActivityCardView.class));
             finish();
         }
 
@@ -73,10 +73,10 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Login.this, "User logged in successfully.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                            startActivity(new Intent(getApplicationContext(), DashboardActivityCardView.class));
                         } else {
                             Toast.makeText(Login.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.VISIBLE);
                         }
                     }
                 });

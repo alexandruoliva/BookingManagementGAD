@@ -11,10 +11,10 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+
 public class DashboardActivity extends AppCompatActivity {
 
     private Button logOutButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

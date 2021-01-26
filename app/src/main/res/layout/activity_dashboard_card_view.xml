@@ -120,7 +120,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EDIT EXISTING BOOKINGS"
+                    android:text="EDIT BOOKINGS"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -155,8 +155,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="VIEW BOOKINGS IN CALENDAR"
                     android:textAlignment="center"
+                    android:text="CALENDAR"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -165,6 +165,7 @@
     </GridLayout>
 
     <Button
+        android:id="@+id/logoutButtonDashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
