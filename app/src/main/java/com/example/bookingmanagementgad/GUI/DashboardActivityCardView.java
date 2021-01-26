@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad;
+package com.example.bookingmanagementgad.GUI;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.bookingmanagementgad.models.User;
+import com.example.bookingmanagementgad.MODELS.User;
+import com.example.bookingmanagementgad.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;

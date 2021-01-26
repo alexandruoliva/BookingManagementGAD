@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad;
+package com.example.bookingmanagementgad.GUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bookingmanagementgad.models.User;
+import com.example.bookingmanagementgad.MODELS.User;
+import com.example.bookingmanagementgad.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

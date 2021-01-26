@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad;
+package com.example.bookingmanagementgad.GUI;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,12 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.bookingmanagementgad.models.User;
+import com.example.bookingmanagementgad.MODELS.User;
+import com.example.bookingmanagementgad.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -44,12 +44,12 @@ public class ProfileFragment extends Fragment {
         DocumentReference documentReference = fStore.collection("users").document(userId);
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        mVerifyMessage = (TextView) view.findViewById(R.id.emailNotVerifiedTextView);
-        mVerifyButton = (Button) view.findViewById(R.id.verifyEmailButton);
-        mUpdateUser = (Button) view.findViewById(R.id.buttonUpdateProfileFragment);
-        mFirstNameTextEdit = (EditText) view.findViewById(R.id.editTextDashboardFirstName);
-        mLastNameTextEdit = (EditText) view.findViewById(R.id.editTextDashboardLastName);
-        mEmailAddressTextView = (TextView) view.findViewById(R.id.textViewDashboardEmail);
+        mVerifyMessage = view.findViewById(R.id.emailNotVerifiedTextView);
+        mVerifyButton = view.findViewById(R.id.verifyEmailButton);
+        mUpdateUser = view.findViewById(R.id.buttonUpdateProfileFragment);
+        mFirstNameTextEdit = view.findViewById(R.id.editTextDashboardFirstName);
+        mLastNameTextEdit = view.findViewById(R.id.editTextDashboardLastName);
+        mEmailAddressTextView = view.findViewById(R.id.textViewDashboardEmail);
 //        CollectionReference userRef = db.collection("Notebook");
 
         fetchUserData(documentReference, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);

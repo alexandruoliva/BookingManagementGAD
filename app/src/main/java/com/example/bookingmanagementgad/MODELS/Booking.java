@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad.models;
+package com.example.bookingmanagementgad.MODELS;
 
 public class Booking {
 
