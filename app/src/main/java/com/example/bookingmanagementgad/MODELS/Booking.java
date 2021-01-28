@@ -5,7 +5,6 @@ public class Booking {
     private String firstName;
     private String lastName;
     private String phoneNumer;
-    private String email;
     private String typeOfBooking;
     private int pricePerNight;
     private int numberOfRooms;
@@ -27,7 +26,6 @@ public class Booking {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumer = phoneNumer;
-        this.email = email;
         this.typeOfBooking = typeOfBooking;
         this.pricePerNight = pricePerNight;
         this.numberOfRooms = numberOfRooms;
@@ -57,14 +55,6 @@ public class Booking {
 
     public void setPhoneNumer(String phoneNumer) {
         this.phoneNumer = phoneNumer;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getTypeOfBooking() {
