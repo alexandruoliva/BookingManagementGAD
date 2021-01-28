@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment {
 
         fetchUserData(documentReference, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
         updateUserProfile(fAuth, documentReference, mUpdateUser, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
-        displayGraphicaElementsIfEmailNotVerified(fUser, mVerifyMessage, mVerifyButton);
+        displayGraphicalElementsIfEmailNotVerified(fUser, mVerifyMessage, mVerifyButton);
 
         return view;
     }
@@ -101,7 +101,7 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void displayGraphicaElementsIfEmailNotVerified(FirebaseUser fUser, TextView mVerifyMessage, Button mVerifyButton) {
+    private void displayGraphicalElementsIfEmailNotVerified(FirebaseUser fUser, TextView mVerifyMessage, Button mVerifyButton) {
         if (!fUser.isEmailVerified()) {
             mVerifyMessage.setVisibility(View.VISIBLE);
             mVerifyButton.setVisibility(View.VISIBLE);

@@ -17,7 +17,6 @@ public class Booking {
     public Booking(String firstName,
                    String lastName,
                    String phoneNumer,
-                   String email,
                    String typeOfBooking,
                    int pricePerNight,
                    int numberOfRooms,
