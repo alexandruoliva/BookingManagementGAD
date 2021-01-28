@@ -68,7 +68,6 @@ public class DashboardActivityCardView extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -78,7 +77,6 @@ public class DashboardActivityCardView extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), NewBookingActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
