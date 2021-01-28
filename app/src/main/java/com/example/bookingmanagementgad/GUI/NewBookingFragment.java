@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.bookingmanagementgad.MODELS.Booking;
 import com.example.bookingmanagementgad.R;
@@ -56,17 +57,17 @@ public class NewBookingFragment extends Fragment {
             public void onClick(View v) {
 
                 String userID = fAuth.getCurrentUser().getUid();
-                DocumentReference documentReference = fStore.collection("users").document(userID);
-//                Booking booking = new Booking(mEditFirstName.getText().toString(),
-//                        mEditLastName.getText().toString(),
-//                        mEditPhoneNumber.getText().toString(),
-//                        mEditTypeOfBooking.getText().toString(),
-//                        Integer.parseInt(mEditPricePerNightBooking.getText().toString()),
-//                        Integer.parseInt(mEditTextNumberOfRoomsBooking.getText().toString()),
-//                        Long.parseLong(mEditTextCheckInDateBooking.getText().toString())
-//                        ,Long.parseLong(mEditTextCheckOutDateBooking.getText().toString()));
+                DocumentReference documentReference = fStore.collection("bookings").document(userID);
+                Booking booking = new Booking(mEditFirstName.getText().toString(),
+                        mEditLastName.getText().toString(),
+                        mEditPhoneNumber.getText().toString(),
+                        mEditTypeOfBooking.getText().toString(),
+                        Integer.parseInt(mEditPricePerNightBooking.getText().toString()),
+                        Integer.parseInt(mEditTextNumberOfRoomsBooking.getText().toString()),
+                        mEditTextCheckInDateBooking.getText().toString(),
+                        mEditTextCheckOutDateBooking.getText().toString());
 
-                Booking booking = new Booking("Alexandru", "Oliva", "Airbnb", "0742096316", 234, 2, 233, 245);
+//                Booking booking = new Booking("Alexandru", "Oliva", "Airbnb", "0742096316", 234, 2, 233, 245);
 
                 CollectionReference userRef = fStore.collection("users");
                 userRef.document(userID).collection("bookings").add(booking);
@@ -74,11 +75,13 @@ public class NewBookingFragment extends Fragment {
                 documentReference.set(booking).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        Toast.makeText(v.getContext(), "Booking has been added successfully.", Toast.LENGTH_SHORT);
                         Log.d(TAG, "onSucces: new BOOKING is created for " + userID);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(v.getContext(), "There was a problem while adding the booking.", Toast.LENGTH_SHORT);
                         Log.d(TAG, "onFailure: " + e.toString());
                     }
                 });

@@ -130,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
         User user = new User(lastName, firstName, email);
         CollectionReference userRef = fStore.collection("users");
         //add a sub-collection named 'bookings' for each newly created user
-        userRef.document(userID).collection("bookings").add(user);
+//        userRef.document(userID).collection("bookings").add(user);
 
         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

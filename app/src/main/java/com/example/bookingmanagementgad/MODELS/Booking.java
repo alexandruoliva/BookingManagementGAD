@@ -8,8 +8,8 @@ public class Booking {
     private String typeOfBooking;
     private int pricePerNight;
     private int numberOfRooms;
-    private long checkInDate;
-    private long checkOutDate;
+    private String checkInDate;
+    private String checkOutDate;
 
     public Booking() {
     }
@@ -20,8 +20,8 @@ public class Booking {
                    String typeOfBooking,
                    int pricePerNight,
                    int numberOfRooms,
-                   long checkInDate,
-                   long checkOutDate) {
+                   String checkInDate,
+                   String checkOutDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumer = phoneNumer;
@@ -80,19 +80,19 @@ public class Booking {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public long getCheckInDate() {
+    public String getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(long checkInDate) {
+    public void setCheckInDate(String checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public long getCheckOutDate() {
+    public String getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(long checkOutDate) {
+    public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 }
