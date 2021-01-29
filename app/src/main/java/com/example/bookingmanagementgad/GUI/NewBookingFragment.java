@@ -72,19 +72,6 @@ public class NewBookingFragment extends Fragment {
                 CollectionReference userRef = fStore.collection("users");
                 userRef.document(userID).collection("bookings").add(booking);
 
-                documentReference.set(booking).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(v.getContext(), "Booking has been added successfully.", Toast.LENGTH_SHORT);
-                        Log.d(TAG, "onSucces: new BOOKING is created for " + userID);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(v.getContext(), "There was a problem while adding the booking.", Toast.LENGTH_SHORT);
-                        Log.d(TAG, "onFailure: " + e.toString());
-                    }
-                });
             }
         });
 
