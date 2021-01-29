@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad.GUI;
+package com.example.bookingmanagementgad.GUI.ACTIVITIES;
 
 import android.content.Intent;
 import android.os.Bundle;

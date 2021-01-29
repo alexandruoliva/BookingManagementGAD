@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad.GUI;
+package com.example.bookingmanagementgad.GUI.FRAGMENTS;
 
 import android.os.Bundle;
 

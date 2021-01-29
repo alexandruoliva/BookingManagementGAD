@@ -12,19 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookingManagementGAD"
         >
-        <activity android:name=".GUI.NewBookingActivity" >
+        <activity android:name=".GUI.ACTIVITIES.NewBookingActivity" >
         </activity>
-        <activity android:name=".GUI.ProfileActivity" />
-        <activity android:name=".GUI.DashboardActivityCardView" />
-        <activity android:name=".GUI.DashboardActivity" />
-        <activity android:name=".GUI.LoginActivity" >
+        <activity android:name=".GUI.ACTIVITIES.ProfileActivity" />
+        <activity android:name=".GUI.ACTIVITIES.DashboardActivityCardView" />
+        <activity android:name=".GUI.ACTIVITIES.DashboardActivity" />
+        <activity android:name=".GUI.ACTIVITIES.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GUI.RegisterActivity" />
+        <activity android:name=".GUI.ACTIVITIES.RegisterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

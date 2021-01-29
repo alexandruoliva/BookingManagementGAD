@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad.GUI;
+package com.example.bookingmanagementgad.GUI.ACTIVITIES;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;

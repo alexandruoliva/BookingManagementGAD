@@ -1,10 +1,11 @@
-package com.example.bookingmanagementgad.GUI;
+package com.example.bookingmanagementgad.GUI.ACTIVITIES;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.bookingmanagementgad.GUI.FRAGMENTS.NewBookingFragment;
 import com.example.bookingmanagementgad.R;
 
 public class NewBookingActivity extends AppCompatActivity {
