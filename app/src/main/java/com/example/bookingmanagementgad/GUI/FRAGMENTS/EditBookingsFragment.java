@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,12 @@ public class EditBookingsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 
 
+        setUpRecycleView(recyclerView);
+
+        return view;
+    }
+
+    private void setUpRecycleView(RecyclerView recyclerView) {
         Query query = db.collection("users").document(userID).collection("bookings").orderBy("checkInDate", Query.Direction.DESCENDING); //get bookings collection
         FirestoreRecyclerOptions<Booking> options = new FirestoreRecyclerOptions.Builder<Booking>()
                 .setQuery(query, Booking.class)
@@ -48,7 +56,21 @@ public class EditBookingsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(bookingAdapter);
 
-        return view;
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            //our removed element can be swiped to LEFT or RIGHT
+            @Override
+            //this methods is used an element is moved with drag'n'drop
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            //this method is used when an element is swiped
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                bookingAdapter.deleteItem(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -62,7 +84,6 @@ public class EditBookingsFragment extends Fragment {
         bookingAdapter.stopListening();
     }
 
-//    private void setUpRecyclerView() {
 // This would be the solution before, when Google didn't have a compound query
 // and this would imply to use the usual RecycleView
 //
@@ -87,7 +108,6 @@ public class EditBookingsFragment extends Fragment {
 //                        }
 //                    }
 //                });
-//    }
 
 
 }

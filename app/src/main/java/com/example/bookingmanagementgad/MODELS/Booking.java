@@ -16,7 +16,7 @@ public class Booking {
 
     public Booking(String firstName,
                    String lastName,
-                   String phoneNumer,
+                   String phoneNumber,
                    String typeOfBooking,
                    int pricePerNight,
                    int numberOfRooms,
@@ -24,7 +24,7 @@ public class Booking {
                    String checkOutDate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumber = phoneNumer;
+        this.phoneNumber = phoneNumber;
         this.typeOfBooking = typeOfBooking;
         this.pricePerNight = pricePerNight;
         this.numberOfRooms = numberOfRooms;
