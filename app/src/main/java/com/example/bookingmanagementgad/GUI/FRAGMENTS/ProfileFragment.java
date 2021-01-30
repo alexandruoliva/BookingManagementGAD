@@ -38,6 +38,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private String userId = fAuth.getCurrentUser().getUid();
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +51,6 @@ public class ProfileFragment extends Fragment {
         mFirstNameTextEdit = view.findViewById(R.id.editTextDashboardFirstName);
         mLastNameTextEdit = view.findViewById(R.id.editTextDashboardLastName);
         mEmailAddressTextView = view.findViewById(R.id.textViewDashboardEmail);
-//        CollectionReference userRef = db.collection("Notebook");
 
         fetchUserData(documentReference, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
         updateUserProfile(fAuth, documentReference, mUpdateUser, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
