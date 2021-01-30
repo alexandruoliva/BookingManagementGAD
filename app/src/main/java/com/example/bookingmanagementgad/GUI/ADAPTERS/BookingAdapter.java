@@ -1,13 +1,11 @@
 package com.example.bookingmanagementgad.GUI.ADAPTERS;
 
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingmanagementgad.MODELS.Booking;
@@ -15,7 +13,6 @@ import com.example.bookingmanagementgad.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAdapter.BookingHolder> {
 
 
