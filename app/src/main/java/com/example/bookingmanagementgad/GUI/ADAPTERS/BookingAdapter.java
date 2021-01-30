@@ -30,10 +30,10 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
     protected void onBindViewHolder(@NonNull BookingHolder holder, int position, @NonNull Booking model) {
         holder.mTextViewLastName.setText(model.getLastName());
         holder.mTextViewFirstName.setText(model.getFirstName());
-        holder.mTextViewCheckInDate.setText(model.getCheckInDate());
-        holder.mTextViewCheckOutDate.setText(model.getCheckOutDate());
+        holder.mTextViewCheckInDate.setText(String.valueOf(model.getCheckInDate()));
+        holder.mTextViewCheckOutDate.setText(String.valueOf(model.getCheckOutDate()));
         holder.mTextViewTypeOfBooking.setText(model.getTypeOfBooking());
-        holder.mTextViewPricePerNight.setText(model.getPricePerNight());
+        holder.mTextViewPricePerNight.setText(String.valueOf(model.getPricePerNight()));
     }
 
     @NonNull
