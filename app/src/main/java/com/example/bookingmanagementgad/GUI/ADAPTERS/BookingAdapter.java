@@ -30,10 +30,12 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
     protected void onBindViewHolder(@NonNull BookingHolder holder, int position, @NonNull Booking model) {
         holder.mTextViewLastName.setText(model.getLastName());
         holder.mTextViewFirstName.setText(model.getFirstName());
-        holder.mTextViewCheckInDate.setText(String.valueOf(model.getCheckInDate()));
-        holder.mTextViewCheckOutDate.setText(String.valueOf(model.getCheckOutDate()));
-        holder.mTextViewTypeOfBooking.setText(model.getTypeOfBooking());
-        holder.mTextViewPricePerNight.setText(String.valueOf(model.getPricePerNight()));
+        holder.mTextViewCheckInDate.setText("Check-in date: "+String.valueOf(model.getCheckInDate()));
+        holder.mTextViewCheckOutDate.setText("Check-out date: "+String.valueOf(model.getCheckOutDate()));
+        holder.mTextViewTypeOfBooking.setText("Type of booking: "+model.getTypeOfBooking());
+        holder.mTextViewPricePerNight.setText("Price/night: "+String.valueOf(model.getPricePerNight()));
+        holder.mTextViewNumberOfRooms.setText("No. of rooms: "+String.valueOf(model.getNumberOfRooms()));
+        holder.mTextViewNumberOfNights.setText("Number of nights: "+String.valueOf(model.getNumberOfRooms()));
     }
 
     @NonNull
@@ -49,18 +51,20 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
         TextView mTextViewFirstName, mTextViewLastName;
         TextView mTextViewCheckInDate, mTextViewCheckOutDate;
         TextView mTextViewPricePerNight, mTextViewTypeOfBooking;
+        TextView mTextViewNumberOfNights, mTextViewNumberOfRooms;
 
 
         public BookingHolder(@NonNull View itemView) {
             super(itemView);
 
             mTextViewLastName = itemView.findViewById(R.id.text_view_last_name);
-            mTextViewFirstName = itemView.findViewById(R.id.text_view_last_name);
+            mTextViewFirstName = itemView.findViewById(R.id.text_view_first_name);
             mTextViewCheckInDate = itemView.findViewById(R.id.text_view_checkIn_date);
             mTextViewCheckOutDate = itemView.findViewById(R.id.text_view_checkOut_date);
             mTextViewPricePerNight = itemView.findViewById(R.id.text_view_price_per_night);
             mTextViewTypeOfBooking = itemView.findViewById(R.id.text_view_type_of_booking);
-
+            mTextViewNumberOfRooms = itemView.findViewById(R.id.text_view_number_of_rooms);
+            mTextViewNumberOfNights = itemView.findViewById(R.id.text_view_number_of_nights);
 
         }
     }

@@ -30,7 +30,6 @@ public class EditBookingsFragment extends Fragment {
 
     private BookingAdapter bookingAdapter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,9 +38,7 @@ public class EditBookingsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 
 
-
         Query query = db.collection("users").document(userID).collection("bookings").orderBy("checkInDate", Query.Direction.DESCENDING); //get bookings collection
-//        Query query = db.collection("users").orderBy("email", Query.Direction.DESCENDING); //get bookings collection
         FirestoreRecyclerOptions<Booking> options = new FirestoreRecyclerOptions.Builder<Booking>()
                 .setQuery(query, Booking.class)
                 .build();
@@ -50,10 +47,6 @@ public class EditBookingsFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(bookingAdapter);
-
-
-//        setUpRecyclerView();
-
 
         return view;
     }
@@ -70,8 +63,9 @@ public class EditBookingsFragment extends Fragment {
     }
 
 //    private void setUpRecyclerView() {
-
-
+// This would be the solution before, when Google didn't have a compound query
+// and this would imply to use the usual RecycleView
+//
 //        userRef.document(userID)
 //                .collection("bookings").get()
 //                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
