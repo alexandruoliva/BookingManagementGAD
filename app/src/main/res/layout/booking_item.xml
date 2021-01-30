@@ -69,5 +69,13 @@
             android:text="Price/night"
             android:layout_below="@id/text_view_checkOut_date"></TextView>
 
+        <TextView
+            android:id="@+id/text_view_type_of_booking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Type of booking"
+            android:layout_below="@id/text_view_price_per_night"></TextView>
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
