@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                             sendConfirmationMail();
 
                             Toast.makeText(RegisterActivity.this, "User created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                            startActivity(new Intent(getApplicationContext(), EmailNotVerifiedActivity.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);

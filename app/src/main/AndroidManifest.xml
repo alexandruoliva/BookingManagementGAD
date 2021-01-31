@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookingManagementGAD">
-        <activity android:name=".GUI.ACTIVITIES.UpdateSingleBookingActivity"></activity>
+        <activity android:name=".GUI.ACTIVITIES.EmailNotVerifiedActivity"></activity>
+        <activity android:name=".GUI.ACTIVITIES.UpdateSingleBookingActivity" />
         <activity android:name=".GUI.ACTIVITIES.EditBookingsActivity" />
         <activity android:name=".GUI.ACTIVITIES.NewBookingActivity" />
         <activity android:name=".GUI.ACTIVITIES.ProfileActivity" />

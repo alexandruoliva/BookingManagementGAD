@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView mGoToRegisterButton, mTextViewForgotPassword;
     private ProgressBar progressBar;
     private FirebaseAuth fAuth;
+    private FirebaseUser fUser;
+//    private FirebaseUser fUser = fAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,18 @@ public class LoginActivity extends AppCompatActivity {
         mTextViewForgotPassword = findViewById(R.id.textViewForgotPassword);
         progressBar = findViewById(R.id.progressBarLogin);
         fAuth = FirebaseAuth.getInstance();
+        fUser = fAuth.getCurrentUser();
 
         if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
-            finish();
+            if (fUser.isEmailVerified()) {
+                startActivity(new Intent(getApplicationContext(), EmailNotVerifiedActivity.class));
+                finish();
+            } else if (fUser == null) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            } else if (!fUser.isEmailVerified() && fAuth!=null) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                finish();
+            }
         }
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +85,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "User logged in successfully.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                            if (fAuth.getCurrentUser() != null) {
+                                fUser = fAuth.getCurrentUser();
+                                if (fUser.isEmailVerified()) {
+                                    startActivity(new Intent(getApplicationContext(), EmailNotVerifiedActivity.class));
+                                } else if (!fUser.isEmailVerified()) {
+                                    startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                                }
+                            }
                             finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

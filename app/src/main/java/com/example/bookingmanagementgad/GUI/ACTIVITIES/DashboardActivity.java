@@ -24,10 +24,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     private Button mLogOutButton;
     private TextView mTitleDashboard;
-    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    private FirebaseUser fUser = fAuth.getCurrentUser();
+    private FirebaseAuth fAuth;
+    private FirebaseUser fUser;
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-    private String userId = fAuth.getCurrentUser().getUid();
+    private String userId ;
     private CardView mProfileCardView, mNewBookingCardView, mEditBookingsCardView;
 
     @Override
@@ -35,6 +35,10 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_dashboard_card_view);
+        fAuth = FirebaseAuth.getInstance();
+        fUser = fAuth.getCurrentUser();
+        userId = fAuth.getCurrentUser().getUid();
+
 
         mLogOutButton = findViewById(R.id.logoutButtonDashboard);
         mTitleDashboard = findViewById(R.id.userTitleTextViewDashboard);
@@ -57,8 +61,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 finish();
             }
         });

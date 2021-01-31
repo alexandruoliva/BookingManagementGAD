@@ -31,8 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = "ProfileFragment";
-    private TextView mVerifyMessage, mEmailAddressTextView;
-    private Button mVerifyButton, mUpdateUser;
+    private TextView  mEmailAddressTextView;
+    private Button  mUpdateUser;
     private EditText mFirstNameTextEdit, mLastNameTextEdit;
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private FirebaseUser fUser = fAuth.getCurrentUser();
@@ -47,8 +47,6 @@ public class ProfileFragment extends Fragment {
         DocumentReference documentReference = fStore.collection("users").document(userId);
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        mVerifyMessage = view.findViewById(R.id.emailNotVerifiedTextView);
-        mVerifyButton = view.findViewById(R.id.verifyEmailButton);
         mUpdateUser = view.findViewById(R.id.buttonUpdateProfileFragment);
         mFirstNameTextEdit = view.findViewById(R.id.editTextDashboardFirstName);
         mLastNameTextEdit = view.findViewById(R.id.editTextDashboardLastName);
@@ -56,7 +54,7 @@ public class ProfileFragment extends Fragment {
 
         fetchUserData(documentReference, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
         updateUserProfile(fAuth, documentReference, mUpdateUser, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
-        displayGraphicalElementsIfEmailNotVerified(fUser, mVerifyMessage, mVerifyButton);
+//        displayGraphicalElementsIfEmailNotVerified(fUser, mVerifyMessage, mVerifyButton);
 
         return view;
     }
