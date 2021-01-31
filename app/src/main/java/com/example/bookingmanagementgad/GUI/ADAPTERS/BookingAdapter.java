@@ -15,6 +15,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAdapter.BookingHolder> {
 
+    private OnItemClickListener listener;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -30,11 +31,11 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
     protected void onBindViewHolder(@NonNull BookingHolder holder, int position, @NonNull Booking model) {
         holder.mTextViewLastName.setText(model.getLastName());
         holder.mTextViewFirstName.setText(model.getFirstName());
-        holder.mTextViewCheckInDate.setText("Check-in date: "+String.valueOf(model.getCheckInDate()));
-        holder.mTextViewCheckOutDate.setText("Check-out date: "+String.valueOf(model.getCheckOutDate()));
-        holder.mTextViewTypeOfBooking.setText("Type of booking: "+model.getTypeOfBooking());
-        holder.mTextViewPricePerNight.setText("Price/night: "+String.valueOf(model.getPricePerNight()));
-        holder.mTextViewNumberOfRooms.setText("No. of rooms: "+String.valueOf(model.getNumberOfRooms()));
+        holder.mTextViewCheckInDate.setText("Check-in date: " + String.valueOf(model.getCheckInDate()));
+        holder.mTextViewCheckOutDate.setText("Check-out date: " + String.valueOf(model.getCheckOutDate()));
+        holder.mTextViewTypeOfBooking.setText("Type of booking: " + model.getTypeOfBooking());
+        holder.mTextViewPricePerNight.setText("Price/night: " + String.valueOf(model.getPricePerNight()));
+        holder.mTextViewNumberOfRooms.setText("No. of rooms: " + String.valueOf(model.getNumberOfRooms()));
 
 //        String checkInDate = model.getCheckInDate();
 //        String checkOutDate = model.getCheckOutDate();
@@ -53,11 +54,15 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
     }
 
 
-    public void deleteItem(int position){
+    public void deleteItem(int position) {
         getSnapshots().getSnapshot(position).getReference().delete();
     }
 
-    class BookingHolder extends RecyclerView.ViewHolder{
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    class BookingHolder extends RecyclerView.ViewHolder {
 
         TextView mTextViewFirstName, mTextViewLastName;
         TextView mTextViewCheckInDate, mTextViewCheckOutDate;
@@ -75,12 +80,22 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
             mTextViewPricePerNight = itemView.findViewById(R.id.text_view_price_per_night);
             mTextViewTypeOfBooking = itemView.findViewById(R.id.text_view_type_of_booking);
             mTextViewNumberOfRooms = itemView.findViewById(R.id.text_view_number_of_rooms);
-            mTextViewNumberOfNights = itemView.findViewById(R.id.text_view_number_of_nights);
+//            mTextViewNumberOfNights = itemView.findViewById(R.id.text_view_number_of_nights);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION && listener != null){
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
 
         }
+
+
     }
-
-
 
 
 }

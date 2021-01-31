@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,11 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookingmanagementgad.GUI.ADAPTERS.BookingAdapter;
+import com.example.bookingmanagementgad.GUI.ADAPTERS.OnItemClickListener;
 import com.example.bookingmanagementgad.MODELS.Booking;
 import com.example.bookingmanagementgad.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -71,6 +74,20 @@ public class EditBookingsFragment extends Fragment {
                 bookingAdapter.deleteItem(viewHolder.getAdapterPosition());
             }
         }).attachToRecyclerView(recyclerView);
+
+
+        bookingAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                Booking booking = documentSnapshot.toObject(Booking.class);
+                String firstName = booking.getFirstName();
+                String lastName = booking.getLastName();
+//                documentSnapshot.getReference(); this is used to get the reference to the object . so you will need
+                Toast.makeText(getActivity(), "item position" + position + "first name" + firstName + "last name " + lastName, Toast.LENGTH_LONG).show();
+
+
+            }
+        });
     }
 
     @Override
