@@ -1,5 +1,6 @@
 package com.example.bookingmanagementgad.GUI.FRAGMENTS;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookingmanagementgad.GUI.ACTIVITIES.UpdateSingleBookingActivity;
 import com.example.bookingmanagementgad.GUI.ADAPTERS.BookingAdapter;
 import com.example.bookingmanagementgad.GUI.ADAPTERS.OnItemClickListener;
 import com.example.bookingmanagementgad.MODELS.Booking;
@@ -19,6 +21,7 @@ import com.example.bookingmanagementgad.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -28,7 +31,6 @@ public class EditBookingsFragment extends Fragment {
     private static final String TAG = "EditBookingsFragment";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference userRef = db.collection("users");
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private String userID = fAuth.getCurrentUser().getUid();
 
@@ -79,11 +81,15 @@ public class EditBookingsFragment extends Fragment {
         bookingAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                Booking booking = documentSnapshot.toObject(Booking.class);
-                String firstName = booking.getFirstName();
-                String lastName = booking.getLastName();
-// documentSnapshot.getReference(); this is used to get the reference to the object . so you will need
-// here I can start another activity and pass the id of the document reference. based on this document id reference I can update the document
+//                Booking booking = documentSnapshot.toObject(Booking.class);
+                DocumentReference documentReference = documentSnapshot.getReference();
+
+                Intent intent = new Intent(getActivity().getBaseContext(), UpdateSingleBookingActivity.class);
+                intent.putExtra("documentID",documentReference.getId());
+                getActivity().startActivity(intent);
+                // documentSnapshot.getReference(); this is used to get the reference to the object . so you will need
+                // here I can start another activity and pass the id of the document reference.
+                // based on this document id reference I can update the document
             }
         });
     }

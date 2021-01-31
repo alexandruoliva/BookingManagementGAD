@@ -18,7 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-        ft.replace(R.id.fragmentNewBooking, new ProfileFragment());
+        ft.replace(R.id.fragmentProfile, new ProfileFragment());
         ft.commit();
     }
 }

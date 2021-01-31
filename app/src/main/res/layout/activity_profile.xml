@@ -7,7 +7,7 @@
     tools:context=".GUI.ACTIVITIES.ProfileActivity">
 
     <FrameLayout
-        android:id="@+id/fragmentNewBooking"
+        android:id="@+id/fragmentProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
