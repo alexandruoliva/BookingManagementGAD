@@ -82,9 +82,8 @@ public class EditBookingsFragment extends Fragment {
                 Booking booking = documentSnapshot.toObject(Booking.class);
                 String firstName = booking.getFirstName();
                 String lastName = booking.getLastName();
-//                documentSnapshot.getReference(); this is used to get the reference to the object . so you will need
-                Toast.makeText(getActivity(), "item position" + position + "first name" + firstName + "last name " + lastName, Toast.LENGTH_LONG).show();
-
+// documentSnapshot.getReference(); this is used to get the reference to the object . so you will need
+// here I can start another activity and pass the id of the document reference. based on this document id reference I can update the document
             }
         });
     }
