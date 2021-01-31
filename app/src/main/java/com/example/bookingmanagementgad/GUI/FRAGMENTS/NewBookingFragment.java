@@ -42,7 +42,7 @@ public class NewBookingFragment extends Fragment {
         mEditTextNumberOfRoomsBooking = view.findViewById(R.id.editTextNumberOfRoomsBooking);
         mEditTextCheckInDateBooking = view.findViewById(R.id.editTextCheckInDateBooking);
         mEditTextCheckOutDateBooking = view.findViewById(R.id.editTextCheckOutDateBooking);
-        mEditTypeOfBooking = view.findViewById(R.id.editTextTypeOfBooking);
+        mEditTypeOfBooking = view.findViewById(R.id.editTextTypeOfBookingBooking);
 
         mButtonCreateNewBooking.setOnClickListener(new View.OnClickListener() {
 
