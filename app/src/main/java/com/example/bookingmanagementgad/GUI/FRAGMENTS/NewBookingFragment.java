@@ -44,6 +44,12 @@ public class NewBookingFragment extends Fragment {
         mEditTextCheckOutDateBooking = view.findViewById(R.id.editTextCheckOutDateBooking);
         mEditTypeOfBooking = view.findViewById(R.id.editTextTypeOfBookingBooking);
 
+        createNewBooking();
+        return view;
+
+    }
+
+    private void createNewBooking() {
         mButtonCreateNewBooking.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -64,14 +70,8 @@ public class NewBookingFragment extends Fragment {
 
                 CollectionReference userRef = fStore.collection("users");
                 userRef.document(userID).collection("bookings").add(booking);
-
             }
         });
-
-
-        return view;
-
-
     }
 
 }

@@ -64,8 +64,6 @@ public class ProfileFragment extends Fragment {
     private void updateUserProfile(FirebaseAuth fAuth, DocumentReference documentReference, Button mUpdateUser, EditText mFirstNameTextEdit, EditText mLastNameTextEdit, TextView mEmailAddressTextView) {
         mUpdateUser.setOnClickListener(new View.OnClickListener() {
 
-
-
             @Override
             public void onClick(View v) {
                 String userID = fAuth.getCurrentUser().getUid();
@@ -77,7 +75,7 @@ public class ProfileFragment extends Fragment {
                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "onSucces: user Profile is updated for " + userID);
+                        Log.d(TAG, "onSucces: User profile is updated for " + userID);
                         Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -121,7 +119,7 @@ public class ProfileFragment extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(), "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                              Toast.makeText(getActivity(), "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
