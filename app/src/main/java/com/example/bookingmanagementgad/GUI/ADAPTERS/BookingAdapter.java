@@ -36,16 +36,12 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
         holder.mTextViewPricePerNight.setText("Price/night: "+String.valueOf(model.getPricePerNight()));
         holder.mTextViewNumberOfRooms.setText("No. of rooms: "+String.valueOf(model.getNumberOfRooms()));
 
+//        String checkInDate = model.getCheckInDate();
+//        String checkOutDate = model.getCheckOutDate();
 
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        String inputString1 = model.getCheckInDate();
-//        String inputString2 = model.getCheckOutDate();
-//
-//        LocalDateTime date1 = LocalDateTime.parse(inputString1, dtf);
-//        LocalDateTime date2 = LocalDateTime.parse(inputString2, dtf);
-//        long daysBetween = Duration.between(date1, date2).toDays();
-//
-//        holder.mTextViewNumberOfNights.setText("Number of nights: "+String.valueOf(daysBetween));
+//        int days = Days.daysBetween(checkInDate, checkOutDate).getDays();
+
+//        holder.mTextViewNumberOfNights.setText("Number of nights: "+String.valueOf(diff));
     }
 
     @NonNull
