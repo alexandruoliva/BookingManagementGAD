@@ -78,13 +78,13 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "onSucces: user Profile is updated for " + userID);
-                        Toast.makeText(v.getContext(), "Profile has been updated successfully.", Toast.LENGTH_SHORT);
+                        Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.d(TAG, "onFailure: " + e.toString());
-                        Toast.makeText(v.getContext(), "Fail! The profile has not been updated successfully.", Toast.LENGTH_SHORT);
+                        Toast.makeText(getActivity(), "Fail! The profile has not been updated successfully.", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -116,12 +116,12 @@ public class ProfileFragment extends Fragment {
                     fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(v.getContext(), "Verification email has been sent.", Toast.LENGTH_SHORT);
+                            Toast.makeText(getActivity(), "Verification email has been sent.", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(v.getContext(), "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT);
+                            Toast.makeText(getActivity(), "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

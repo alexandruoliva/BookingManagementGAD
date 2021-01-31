@@ -150,12 +150,12 @@ public class RegisterActivity extends AppCompatActivity {
         fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(RegisterActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT);
+                Toast.makeText(RegisterActivity.this, "Verification email has been sent.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterActivity.this, "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT);
+                Toast.makeText(RegisterActivity.this, "onFailure: Email not sent " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

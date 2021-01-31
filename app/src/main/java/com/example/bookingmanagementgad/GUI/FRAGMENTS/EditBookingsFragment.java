@@ -85,7 +85,6 @@ public class EditBookingsFragment extends Fragment {
 //                documentSnapshot.getReference(); this is used to get the reference to the object . so you will need
                 Toast.makeText(getActivity(), "item position" + position + "first name" + firstName + "last name " + lastName, Toast.LENGTH_LONG).show();
 
-
             }
         });
     }
