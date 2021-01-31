@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad.GUI;
+package com.example.bookingmanagementgad.GUI.ACTIVITIES;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +28,7 @@ public class DashboardActivityCardView extends AppCompatActivity {
     private FirebaseUser fUser = fAuth.getCurrentUser();
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private String userId = fAuth.getCurrentUser().getUid();
-    private CardView mProfileCardView, mNewBookingCardView;
+    private CardView mProfileCardView, mNewBookingCardView, mEditBookingsCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class DashboardActivityCardView extends AppCompatActivity {
         mTitleDashboard = findViewById(R.id.userTitleTextViewDashboard);
         mProfileCardView = findViewById(R.id.profileCardView);
         mNewBookingCardView = findViewById(R.id.addNewBookingCardView);
+        mEditBookingsCardView = findViewById(R.id.editBookingsCardView);
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
 
@@ -81,5 +82,17 @@ public class DashboardActivityCardView extends AppCompatActivity {
         });
 
 
+        mEditBookingsCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditBookingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
     }
+
 }

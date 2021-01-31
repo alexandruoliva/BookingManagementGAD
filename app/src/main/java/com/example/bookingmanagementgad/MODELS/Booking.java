@@ -4,7 +4,7 @@ public class Booking {
 
     private String firstName;
     private String lastName;
-    private String phoneNumer;
+    private String phoneNumber;
     private String typeOfBooking;
     private int pricePerNight;
     private int numberOfRooms;
@@ -16,7 +16,7 @@ public class Booking {
 
     public Booking(String firstName,
                    String lastName,
-                   String phoneNumer,
+                   String phoneNumber,
                    String typeOfBooking,
                    int pricePerNight,
                    int numberOfRooms,
@@ -24,7 +24,7 @@ public class Booking {
                    String checkOutDate) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumer = phoneNumer;
+        this.phoneNumber = phoneNumber;
         this.typeOfBooking = typeOfBooking;
         this.pricePerNight = pricePerNight;
         this.numberOfRooms = numberOfRooms;
@@ -48,12 +48,12 @@ public class Booking {
         this.lastName = lastName;
     }
 
-    public String getPhoneNumer() {
-        return phoneNumer;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneNumer(String phoneNumer) {
-        this.phoneNumer = phoneNumer;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getTypeOfBooking() {

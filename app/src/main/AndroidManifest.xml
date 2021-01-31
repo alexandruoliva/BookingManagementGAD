@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bookingmanagementgad" >
+    package="com.example.bookingmanagementgad">
 
     <permission android:name="android.permission.INTERNET" />
 
@@ -10,21 +10,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BookingManagementGAD"
-        >
-        <activity android:name=".GUI.NewBookingActivity" >
-        </activity>
-        <activity android:name=".GUI.ProfileActivity" />
-        <activity android:name=".GUI.DashboardActivityCardView" />
-        <activity android:name=".GUI.DashboardActivity" />
-        <activity android:name=".GUI.LoginActivity" >
+        android:theme="@style/Theme.BookingManagementGAD">
+        <activity android:name=".GUI.ACTIVITIES.EditBookingsActivity"></activity>
+        <activity android:name=".GUI.ACTIVITIES.NewBookingActivity"></activity>
+        <activity android:name=".GUI.ACTIVITIES.ProfileActivity" />
+        <activity android:name=".GUI.ACTIVITIES.DashboardActivityCardView" />
+        <activity android:name=".GUI.ACTIVITIES.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GUI.RegisterActivity" />
+        <activity android:name=".GUI.ACTIVITIES.RegisterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

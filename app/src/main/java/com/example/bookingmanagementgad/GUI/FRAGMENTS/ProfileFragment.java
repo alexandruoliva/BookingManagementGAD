@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad.GUI;
+package com.example.bookingmanagementgad.GUI.FRAGMENTS;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -37,6 +38,8 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser fUser = fAuth.getCurrentUser();
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     private String userId = fAuth.getCurrentUser().getUid();
+    CollectionReference userRef = fStore.collection("users");
+
 
     @Nullable
     @Override
@@ -50,7 +53,6 @@ public class ProfileFragment extends Fragment {
         mFirstNameTextEdit = view.findViewById(R.id.editTextDashboardFirstName);
         mLastNameTextEdit = view.findViewById(R.id.editTextDashboardLastName);
         mEmailAddressTextView = view.findViewById(R.id.textViewDashboardEmail);
-//        CollectionReference userRef = db.collection("Notebook");
 
         fetchUserData(documentReference, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
         updateUserProfile(fAuth, documentReference, mUpdateUser, mFirstNameTextEdit, mLastNameTextEdit, mEmailAddressTextView);
@@ -61,6 +63,9 @@ public class ProfileFragment extends Fragment {
 
     private void updateUserProfile(FirebaseAuth fAuth, DocumentReference documentReference, Button mUpdateUser, EditText mFirstNameTextEdit, EditText mLastNameTextEdit, TextView mEmailAddressTextView) {
         mUpdateUser.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View v) {
                 String userID = fAuth.getCurrentUser().getUid();
@@ -69,7 +74,6 @@ public class ProfileFragment extends Fragment {
                 String email = mEmailAddressTextView.getText().toString();
 
                 User user = new User(firstName, lastName, email);
-
                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

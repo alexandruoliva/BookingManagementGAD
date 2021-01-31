@@ -1,4 +1,4 @@
-package com.example.bookingmanagementgad.GUI;
+package com.example.bookingmanagementgad.GUI.ACTIVITIES;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -127,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void populateUsersData(String lastName, String firstName, String email) {
         userID = fAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userID);
-        User user = new User(lastName, firstName, email);
+        User user = new User(firstName, lastName, email);
         CollectionReference userRef = fStore.collection("users");
         //add a sub-collection named 'bookings' for each newly created user
 //        userRef.document(userID).collection("bookings").add(user);
