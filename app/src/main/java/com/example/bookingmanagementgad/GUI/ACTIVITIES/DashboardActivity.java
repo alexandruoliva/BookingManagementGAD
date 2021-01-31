@@ -20,7 +20,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class DashboardActivityCardView extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
 
     private Button mLogOutButton;
     private TextView mTitleDashboard;
