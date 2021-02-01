@@ -48,8 +48,10 @@ public class EmailNotVerifiedActivity extends AppCompatActivity {
                         });
                     }
                 });
-            } else if(fUser.isEmailVerified()) {
+            }
+            else if(fUser.isEmailVerified()) {
                 startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                finish();
             }
         }
 

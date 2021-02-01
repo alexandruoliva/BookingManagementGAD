@@ -92,8 +92,10 @@ public class LoginActivity extends AppCompatActivity {
                                 } else if (!fUser.isEmailVerified()) {
                                     startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                                 }
-                            }
+
+                            progressBar.setVisibility(View.VISIBLE);
                             finish();
+                            }
                         } else {
                             Toast.makeText(LoginActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.VISIBLE);
