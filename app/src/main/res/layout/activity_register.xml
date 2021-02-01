@@ -11,7 +11,7 @@
         android:id="@+id/goToLoginPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pacifico"
+        android:fontFamily="sans-serif"
         android:text="Already have an account? Login here"
         android:textColor="#000000"
         android:textSize="18sp"

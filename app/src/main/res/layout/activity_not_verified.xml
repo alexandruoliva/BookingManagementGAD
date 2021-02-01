@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GUI.ACTIVITIES.EmailNotVerifiedActivity">
+    tools:context=".GUI.ACTIVITIES.EmailNotVerifiedActivity"
+    android:background="@drawable/gradient_background">
 
     <TextView
         android:id="@+id/emailNotVerifiedTextView2"
@@ -12,6 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Your e-mail is not verified! Please confirm your e-mail and restart the application!"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,8 +27,14 @@
         android:id="@+id/verifyEmailButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Resend confirmation mail."
+        android:backgroundTint="@android:color/white"
+        android:fontFamily="sans-serif"
+        android:text="Resend confirmation mail"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFFFFF"
+        android:textStyle="bold"
         android:visibility="visible"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
