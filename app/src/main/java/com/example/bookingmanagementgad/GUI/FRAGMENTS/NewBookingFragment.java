@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,6 +71,7 @@ public class NewBookingFragment extends Fragment {
 
                 CollectionReference userRef = fStore.collection("users");
                 userRef.document(userID).collection("bookings").add(booking);
+                Toast.makeText(getActivity(), "New booking has been created successfully!", Toast.LENGTH_SHORT).show();
             }
         });
     }
