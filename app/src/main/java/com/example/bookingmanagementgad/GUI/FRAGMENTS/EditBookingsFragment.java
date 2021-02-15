@@ -1,5 +1,7 @@
 package com.example.bookingmanagementgad.GUI.FRAGMENTS;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -73,8 +75,11 @@ public class EditBookingsFragment extends Fragment {
             //this method is used when an element is swiped
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                bookingAdapter.deleteItem(viewHolder.getAdapterPosition());
+//                bookingAdapter.deleteItem(viewHolder.getAdapterPosition());
+                showAlertDialogWhenDeleteRequested(viewHolder);
+
             }
+
         }).attachToRecyclerView(recyclerView);
 
 
@@ -92,6 +97,22 @@ public class EditBookingsFragment extends Fragment {
                 // based on this document id reference I can update the document
             }
         });
+    }
+
+    private void showAlertDialogWhenDeleteRequested(@NonNull RecyclerView.ViewHolder viewHolder) {
+        new AlertDialog.Builder(viewHolder.itemView.getContext())
+                .setMessage("Do you really want to delete this booking?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        bookingAdapter.deleteItem(viewHolder.getAdapterPosition());
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                bookingAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
+            }
+        }).create().show();
     }
 
     @Override
