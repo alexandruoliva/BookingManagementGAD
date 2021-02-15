@@ -17,6 +17,8 @@ public class UpdateSingleBookingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_single_booking);
+        getSupportActionBar().hide();
+
 
         //getting the document reference from the EditBookingsFragment
         Intent intent = getIntent();
