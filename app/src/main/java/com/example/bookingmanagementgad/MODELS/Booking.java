@@ -12,7 +12,14 @@ public class Booking {
     private int numberOfRooms;
     private String checkInDate;
     private String checkOutDate;
-    private ArrayList roomsArray;
+    private boolean room1;
+    private boolean room2;
+    private boolean room3;
+    private boolean room4;
+    private boolean room5;
+    private boolean room6;
+    private boolean roomUnderHouse;
+    private boolean allRooms;
 
     public Booking() {
     }
@@ -25,7 +32,15 @@ public class Booking {
                    int numberOfRooms,
                    String checkInDate,
                    String checkOutDate,
-                   ArrayList roomsArray) {
+                   boolean room1,
+                   boolean room2,
+                   boolean room3,
+                   boolean room4,
+                   boolean room5,
+                   boolean room6,
+                   boolean roomUnderHouse,
+                   boolean allRooms
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -34,7 +49,15 @@ public class Booking {
         this.numberOfRooms = numberOfRooms;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
-        this.roomsArray = roomsArray;
+        this.room1 = room1;
+        this.room2 = room2;
+        this.room3 = room3;
+        this.room4 = room4;
+        this.room5 = room5;
+        this.room6 = room6;
+        this.roomUnderHouse = roomUnderHouse;
+        this.allRooms = allRooms;
+
     }
 
     public String getFirstName() {
@@ -101,11 +124,67 @@ public class Booking {
         this.checkOutDate = checkOutDate;
     }
 
-    public ArrayList getRoomsArray() {
-        return roomsArray;
+    public boolean isRoom1() {
+        return room1;
     }
 
-    public void setRoomsArray(ArrayList roomsArray) {
-        this.roomsArray = roomsArray;
+    public void setRoom1(boolean room1) {
+        this.room1 = room1;
+    }
+
+    public boolean isRoom2() {
+        return room2;
+    }
+
+    public void setRoom2(boolean room2) {
+        this.room2 = room2;
+    }
+
+    public boolean isRoom3() {
+        return room3;
+    }
+
+    public void setRoom3(boolean room3) {
+        this.room3 = room3;
+    }
+
+    public boolean isRoom4() {
+        return room4;
+    }
+
+    public void setRoom4(boolean room4) {
+        this.room4 = room4;
+    }
+
+    public boolean isRoom5() {
+        return room5;
+    }
+
+    public void setRoom5(boolean room5) {
+        this.room5 = room5;
+    }
+
+    public boolean isRoom6() {
+        return room6;
+    }
+
+    public void setRoom6(boolean room6) {
+        this.room6 = room6;
+    }
+
+    public boolean isRoomUnderHouse() {
+        return roomUnderHouse;
+    }
+
+    public void setRoomUnderHouse(boolean roomUnderHouse) {
+        this.roomUnderHouse = roomUnderHouse;
+    }
+
+    public boolean isAllRooms() {
+        return allRooms;
+    }
+
+    public void setAllRooms(boolean allRooms) {
+        this.allRooms = allRooms;
     }
 }

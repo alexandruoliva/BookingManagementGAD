@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UpdateSingleBookingFragment extends Fragment {
 
@@ -39,9 +41,23 @@ public class UpdateSingleBookingFragment extends Fragment {
     private EditText mUpdateCheckInDateBooking, mUpdateCheckOutDateBooking;
     private EditText mUpdateTypeOfBooking;
 
+    private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
+    private CheckBox mUpdateCheckBoxRoom1, mUpdateCheckBoxRoom2, mUpdateCheckBoxRoom3;
+    private CheckBox mUpdateCheckBoxRoom4, mUpdateCheckBoxRoom5, mUpdateCheckBoxRoom6;
+    private CheckBox mUpdateCheckBoxRoomUnderHouse, mUpdateCheckBoxRoomAll;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private String userID = fAuth.getCurrentUser().getUid();
+
+    private boolean room1;
+    private boolean room2;
+    private boolean room3;
+    private boolean room4;
+    private boolean room5;
+    private boolean room6;
+    private boolean roomUnderHouse;
+    private boolean allRooms;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +73,23 @@ public class UpdateSingleBookingFragment extends Fragment {
         mUpdateCheckInDateBooking = view.findViewById(R.id.editTextCheckInDateUpdate);
         mUpdateCheckOutDateBooking = view.findViewById(R.id.editTextCheckOutDateUpdate);
         mUpdateTypeOfBooking = view.findViewById(R.id.editTextTypeOfBookingUpdate);
+
+        mUpdateCheckBoxRoom1 = view.findViewById(R.id.updateRoom1CheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoom1);
+        mUpdateCheckBoxRoom2 = view.findViewById(R.id.updateRoom2CheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoom2);
+        mUpdateCheckBoxRoom3 = view.findViewById(R.id.updateRoom3CheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoom2);
+        mUpdateCheckBoxRoom4 = view.findViewById(R.id.updateRoom4CheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoom4);
+        mUpdateCheckBoxRoom5 = view.findViewById(R.id.updateRoom5CheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoom5);
+        mUpdateCheckBoxRoom6 = view.findViewById(R.id.updateRoom6CheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoom6);
+        mUpdateCheckBoxRoomUnderHouse = view.findViewById(R.id.roomUnderHouseCheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoomUnderHouse);
+        mUpdateCheckBoxRoomAll = view.findViewById(R.id.updateRoomAllCheckBox);
+        checkBoxes.add(mUpdateCheckBoxRoomAll);
 
         Bundle bundle = this.getArguments();
         String documentId = bundle.getString("documentID");
@@ -85,7 +118,32 @@ public class UpdateSingleBookingFragment extends Fragment {
                 mUpdateCheckOutDateBooking.setText(booking.getCheckOutDate());
                 mUpdateTypeOfBooking.setText(booking.getTypeOfBooking());
 
+                if (booking.isRoom1()) {
+                    mUpdateCheckBoxRoom1.setChecked(true);
+                }
+                if (booking.isRoom2()) {
+                    mUpdateCheckBoxRoom2.setChecked(true);
+                }
+                if (booking.isRoom3()) {
+                    mUpdateCheckBoxRoom3.setChecked(true);
+                }
+                if (booking.isRoom4()) {
+                    mUpdateCheckBoxRoom4.setChecked(true);
+                }
+                if (booking.isRoom5()) {
+                    mUpdateCheckBoxRoom6.setChecked(true);
+                }
+                if (booking.isRoom6()) {
+                    mUpdateCheckBoxRoom6.setChecked(true);
+                }
+                if (booking.isRoomUnderHouse()) {
+                    mUpdateCheckBoxRoomUnderHouse.setChecked(true);
+                }
+                if (booking.isAllRooms())
+                    mUpdateCheckBoxRoomAll.setChecked(true);
             }
+
+
         });
     }
 
@@ -93,8 +151,31 @@ public class UpdateSingleBookingFragment extends Fragment {
         mButtonUpdateBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> rooms = new ArrayList<>();
-                rooms.add("bla bla");
+                if (mUpdateCheckBoxRoom1.isChecked()) {
+                    room1 = true;
+                }
+                if (mUpdateCheckBoxRoom2.isChecked()) {
+                    room2 = true;
+                }
+                if (mUpdateCheckBoxRoom3.isChecked()) {
+                    room3 = true;
+                }
+                if (mUpdateCheckBoxRoom4.isChecked()) {
+                    room4 = true;
+                }
+                if (mUpdateCheckBoxRoom5.isChecked()) {
+                    room5 = true;
+                }
+                if (mUpdateCheckBoxRoom6.isChecked()) {
+                    room6 = true;
+                }
+                if (mUpdateCheckBoxRoomUnderHouse.isChecked()) {
+                    roomUnderHouse = true;
+                }
+                if (mUpdateCheckBoxRoomAll.isChecked()) {
+                    allRooms = true;
+                }
+
                 Booking booking = new Booking(mUpdateFirstName.getText().toString(),
                         mUpdateLastName.getText().toString(),
                         mUpdatePhoneNumber.getText().toString(),
@@ -102,7 +183,8 @@ public class UpdateSingleBookingFragment extends Fragment {
                         Integer.parseInt(mUpdatePricePerNightBooking.getText().toString()),
                         Integer.parseInt(mUpdateNumberOfRoomsBooking.getText().toString()),
                         mUpdateCheckInDateBooking.getText().toString(),
-                        mUpdateCheckOutDateBooking.getText().toString(), rooms);
+                        mUpdateCheckOutDateBooking.getText().toString(), room1,
+                        room2, room3, room4, room5, room6, roomUnderHouse, allRooms);
 
                 documentReference.set(booking).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

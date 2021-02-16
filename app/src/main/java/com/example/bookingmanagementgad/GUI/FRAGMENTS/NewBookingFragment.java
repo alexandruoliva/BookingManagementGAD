@@ -37,6 +37,15 @@ public class NewBookingFragment extends Fragment {
     private CheckBox mCheckBoxRoom4,mCheckBoxRoom5,mCheckBoxRoom6;
     private CheckBox mCheckBoxRoomUnderHouse,mCheckBoxRoomAll;
 
+    private boolean room1;
+    private boolean room2;
+    private boolean room3;
+    private boolean room4;
+    private boolean room5;
+    private boolean room6;
+    private boolean roomUnderHouse;
+    private boolean allRooms;
+
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
@@ -88,6 +97,8 @@ public class NewBookingFragment extends Fragment {
                         checkBox.setEnabled(false);
                         if(checkBox.isChecked()){
                             checkBox.toggle();
+                            checkBox.setChecked(false);
+
                         }
                     }
                 }
@@ -110,30 +121,29 @@ public class NewBookingFragment extends Fragment {
 
                 String userID = fAuth.getCurrentUser().getUid();
                 DocumentReference documentReference = fStore.collection("bookings").document(userID);
-                ArrayList<String> roomsArray = new ArrayList<>();
-                if(mCheckBoxRoom1.isChecked()){
-                    roomsArray.add("Camera 1");
+                if(mCheckBoxRoom1.isChecked() && mCheckBoxRoom1.isEnabled()){
+                    room1 = true;
                 }
-                if(mCheckBoxRoom2.isChecked()){
-                    roomsArray.add("Camera 2");
+                if(mCheckBoxRoom2.isChecked() && mCheckBoxRoom2.isEnabled()){
+                    room2 = true;
                 }
-                if(mCheckBoxRoom3.isChecked()){
-                    roomsArray.add("Camera 3");
+                if(mCheckBoxRoom3.isChecked() && mCheckBoxRoom3.isEnabled()){
+                    room3 = true;
                 }
-                if(mCheckBoxRoom4.isChecked()){
-                    roomsArray.add("Camera 4");
+                if(mCheckBoxRoom4.isChecked() && mCheckBoxRoom4.isEnabled()){
+                    room4 = true;
                 }
-                if(mCheckBoxRoom5.isChecked()){
-                    roomsArray.add("Camera 5");
+                if(mCheckBoxRoom5.isChecked() && mCheckBoxRoom5.isEnabled()){
+                    room5 = true;
                 }
-                if(mCheckBoxRoom6.isChecked()){
-                    roomsArray.add("Camera 6");
+                if(mCheckBoxRoom6.isChecked() && mCheckBoxRoom6.isEnabled()){
+                    room6 = true;
                 }
-                if(mCheckBoxRoomUnderHouse.isChecked()){
-                    roomsArray.add("Sub casa");
+                if(mCheckBoxRoomUnderHouse.isChecked() && mCheckBoxRoomUnderHouse.isEnabled()){
+                    roomUnderHouse = true;
                 }
-                if(mCheckBoxRoomAll.isChecked()){
-                    roomsArray.add("Toata pensiunea");
+                if(mCheckBoxRoomAll.isChecked() && mCheckBoxRoomAll.isEnabled()){
+                    allRooms = true;
                 }
 
 
@@ -145,7 +155,14 @@ public class NewBookingFragment extends Fragment {
                         Integer.parseInt(mEditTextNumberOfRoomsBooking.getText().toString()),
                         mEditTextCheckInDateBooking.getText().toString(),
                         mEditTextCheckOutDateBooking.getText().toString(),
-                        roomsArray);
+                        room1,
+                        room2,
+                        room3,
+                        room4,
+                        room5,
+                        room6,
+                        roomUnderHouse,
+                        allRooms);
 
 //                Booking booking = new Booking("Alexandru", "Oliva", "Airbnb", "0742096316", 234, 2, 233, 245);
 

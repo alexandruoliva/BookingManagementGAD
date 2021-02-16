@@ -37,6 +37,7 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
         holder.mTextViewPricePerNight.setText("Price/night: " + String.valueOf(model.getPricePerNight()));
         holder.mTextViewNumberOfRooms.setText("No. of rooms: " + String.valueOf(model.getNumberOfRooms()));
 
+
 //        String checkInDate = model.getCheckInDate();
 //        String checkOutDate = model.getCheckOutDate();
 
