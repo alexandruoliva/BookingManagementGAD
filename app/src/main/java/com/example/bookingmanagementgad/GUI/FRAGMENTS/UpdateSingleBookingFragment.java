@@ -26,6 +26,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class UpdateSingleBookingFragment extends Fragment {
 
 
@@ -90,6 +93,8 @@ public class UpdateSingleBookingFragment extends Fragment {
         mButtonUpdateBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<String> rooms = new ArrayList<>();
+                rooms.add("bla bla");
                 Booking booking = new Booking(mUpdateFirstName.getText().toString(),
                         mUpdateLastName.getText().toString(),
                         mUpdatePhoneNumber.getText().toString(),
@@ -97,7 +102,7 @@ public class UpdateSingleBookingFragment extends Fragment {
                         Integer.parseInt(mUpdatePricePerNightBooking.getText().toString()),
                         Integer.parseInt(mUpdateNumberOfRoomsBooking.getText().toString()),
                         mUpdateCheckInDateBooking.getText().toString(),
-                        mUpdateCheckOutDateBooking.getText().toString());
+                        mUpdateCheckOutDateBooking.getText().toString(), rooms);
 
                 documentReference.set(booking).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

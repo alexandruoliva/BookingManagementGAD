@@ -1,5 +1,7 @@
 package com.example.bookingmanagementgad.MODELS;
 
+import java.util.ArrayList;
+
 public class Booking {
 
     private String firstName;
@@ -10,6 +12,7 @@ public class Booking {
     private int numberOfRooms;
     private String checkInDate;
     private String checkOutDate;
+    private ArrayList roomsArray;
 
     public Booking() {
     }
@@ -21,7 +24,8 @@ public class Booking {
                    int pricePerNight,
                    int numberOfRooms,
                    String checkInDate,
-                   String checkOutDate) {
+                   String checkOutDate,
+                   ArrayList roomsArray) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -30,6 +34,7 @@ public class Booking {
         this.numberOfRooms = numberOfRooms;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
+        this.roomsArray = roomsArray;
     }
 
     public String getFirstName() {
@@ -94,5 +99,13 @@ public class Booking {
 
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
+    }
+
+    public ArrayList getRoomsArray() {
+        return roomsArray;
+    }
+
+    public void setRoomsArray(ArrayList roomsArray) {
+        this.roomsArray = roomsArray;
     }
 }

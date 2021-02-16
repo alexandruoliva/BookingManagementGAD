@@ -140,7 +140,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wholeBuildingChecBox"
+        app:layout_constraintTop_toBottomOf="@+id/roomAllCheckBox"
         app:layout_constraintVertical_bias="0.42000002" />
 
     <CheckBox
@@ -216,7 +216,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
-        android:id="@+id/room7CheckBox"
+        android:id="@+id/roomUnderHouseCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sub casa"
@@ -228,14 +228,14 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <CheckBox
-        android:id="@+id/wholeBuildingChecBox"
+        android:id="@+id/roomAllCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Toata pensiunea"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/room7CheckBox"
+        app:layout_constraintStart_toEndOf="@+id/roomUnderHouseCheckBox"
         app:layout_constraintTop_toBottomOf="@+id/room6CheckBox"
         app:layout_constraintVertical_bias="0.0" />
 
