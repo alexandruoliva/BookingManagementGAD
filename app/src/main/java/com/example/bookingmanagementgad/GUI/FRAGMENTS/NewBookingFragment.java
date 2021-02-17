@@ -1,6 +1,7 @@
 package com.example.bookingmanagementgad.GUI.FRAGMENTS;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,6 +122,37 @@ public class NewBookingFragment extends Fragment {
 
                 String userID = fAuth.getCurrentUser().getUid();
                 DocumentReference documentReference = fStore.collection("bookings").document(userID);
+
+                String firstName = mEditFirstName.getText().toString().trim();
+                String lastName = mEditLastName.getText().toString().trim();
+
+                if (TextUtils.isEmpty(firstName)) {
+                    mEditFirstName.setError("First name is required!!");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(lastName)) {
+                    mEditLastName.setError("Last name is required!");
+                    return;
+                }
+
+                if(!mCheckBoxRoom1.isChecked() &&
+                   !mCheckBoxRoom2.isChecked() &&
+                   !mCheckBoxRoom3.isChecked() &&
+                   !mCheckBoxRoom4.isChecked() &&
+                   !mCheckBoxRoom5.isChecked() &&
+                   !mCheckBoxRoom6.isChecked() &&
+                   !mCheckBoxRoomUnderHouse.isChecked() &&
+                   !mCheckBoxRoomAll.isChecked()){
+                    Toast.makeText(getActivity(), "At least one room should be selected!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+
+
+
+
                 if(mCheckBoxRoom1.isChecked() && mCheckBoxRoom1.isEnabled()){
                     room1 = true;
                 }

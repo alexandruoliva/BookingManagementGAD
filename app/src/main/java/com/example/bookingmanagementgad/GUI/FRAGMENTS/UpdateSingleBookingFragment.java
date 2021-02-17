@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -79,24 +80,25 @@ public class UpdateSingleBookingFragment extends Fragment {
         mUpdateCheckBoxRoom2 = view.findViewById(R.id.updateRoom2CheckBox);
         checkBoxes.add(mUpdateCheckBoxRoom2);
         mUpdateCheckBoxRoom3 = view.findViewById(R.id.updateRoom3CheckBox);
-        checkBoxes.add(mUpdateCheckBoxRoom2);
+        checkBoxes.add(mUpdateCheckBoxRoom3);
         mUpdateCheckBoxRoom4 = view.findViewById(R.id.updateRoom4CheckBox);
         checkBoxes.add(mUpdateCheckBoxRoom4);
         mUpdateCheckBoxRoom5 = view.findViewById(R.id.updateRoom5CheckBox);
         checkBoxes.add(mUpdateCheckBoxRoom5);
         mUpdateCheckBoxRoom6 = view.findViewById(R.id.updateRoom6CheckBox);
         checkBoxes.add(mUpdateCheckBoxRoom6);
-        mUpdateCheckBoxRoomUnderHouse = view.findViewById(R.id.roomUnderHouseCheckBox);
+        mUpdateCheckBoxRoomUnderHouse = view.findViewById(R.id.updateRoomUnderHouseCheckBox);
         checkBoxes.add(mUpdateCheckBoxRoomUnderHouse);
         mUpdateCheckBoxRoomAll = view.findViewById(R.id.updateRoomAllCheckBox);
-        checkBoxes.add(mUpdateCheckBoxRoomAll);
 
         Bundle bundle = this.getArguments();
         String documentId = bundle.getString("documentID");
 
         DocumentReference documentReference = db.collection("users").document(userID).collection("bookings").document(documentId);
 
+
         fetchBookingData(documentReference);
+        disableOtherCheckBoxes();
 
         updateBookingData(documentId, documentReference);
 
@@ -131,7 +133,7 @@ public class UpdateSingleBookingFragment extends Fragment {
                     mUpdateCheckBoxRoom4.setChecked(true);
                 }
                 if (booking.isRoom5()) {
-                    mUpdateCheckBoxRoom6.setChecked(true);
+                    mUpdateCheckBoxRoom5.setChecked(true);
                 }
                 if (booking.isRoom6()) {
                     mUpdateCheckBoxRoom6.setChecked(true);
@@ -139,11 +141,45 @@ public class UpdateSingleBookingFragment extends Fragment {
                 if (booking.isRoomUnderHouse()) {
                     mUpdateCheckBoxRoomUnderHouse.setChecked(true);
                 }
-                if (booking.isAllRooms())
+                if (booking.isAllRooms()) {
                     mUpdateCheckBoxRoomAll.setChecked(true);
+                    mUpdateCheckBoxRoomAll.setEnabled(true);
+                    mUpdateCheckBoxRoom1.setEnabled(false);
+                    mUpdateCheckBoxRoom2.setEnabled(false);
+                    mUpdateCheckBoxRoom3.setEnabled(false);
+                    mUpdateCheckBoxRoom4.setEnabled(false);
+                    mUpdateCheckBoxRoom5.setEnabled(false);
+                    mUpdateCheckBoxRoom6.setEnabled(false);
+                    mUpdateCheckBoxRoomUnderHouse.setEnabled(false);
+                }
+
             }
 
 
+        });
+    }
+
+    private void disableOtherCheckBoxes() {
+        mUpdateCheckBoxRoomAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (mUpdateCheckBoxRoomAll.isChecked()) {
+                    for (CheckBox checkBox : checkBoxes) {
+                        checkBox.setEnabled(false);
+                        if (checkBox.isChecked()) {
+                            checkBox.toggle();
+                            checkBox.setChecked(false);
+
+                        }
+                    }
+                }
+                if (!mUpdateCheckBoxRoomAll.isChecked()) {
+                    for (CheckBox checkBox : checkBoxes) {
+                        checkBox.setEnabled(true);
+                    }
+                }
+            }
         });
     }
 
