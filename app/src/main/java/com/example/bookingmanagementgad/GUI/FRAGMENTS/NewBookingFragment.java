@@ -169,6 +169,14 @@ public class NewBookingFragment extends Fragment {
                 CollectionReference userRef = fStore.collection("users");
                 userRef.document(userID).collection("bookings").add(booking);
                 Toast.makeText(getActivity(), "New booking has been created successfully!", Toast.LENGTH_SHORT).show();
+                room1=false;
+                room2=false;
+                room3=false;
+                room4=false;
+                room5=false;
+                room6=false;
+                roomUnderHouse=false;
+                allRooms=false;
             }
         });
     }
