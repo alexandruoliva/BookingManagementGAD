@@ -35,9 +35,9 @@ public class NewBookingFragment extends Fragment {
     private EditText mEditTypeOfBooking;
 
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
-    private CheckBox mCheckBoxRoom1,mCheckBoxRoom2,mCheckBoxRoom3;
-    private CheckBox mCheckBoxRoom4,mCheckBoxRoom5,mCheckBoxRoom6;
-    private CheckBox mCheckBoxRoomUnderHouse,mCheckBoxRoomAll;
+    private CheckBox mCheckBoxRoom1, mCheckBoxRoom2, mCheckBoxRoom3;
+    private CheckBox mCheckBoxRoom4, mCheckBoxRoom5, mCheckBoxRoom6;
+    private CheckBox mCheckBoxRoomUnderHouse, mCheckBoxRoomAll;
 
     private boolean room1;
     private boolean room2;
@@ -51,7 +51,6 @@ public class NewBookingFragment extends Fragment {
 
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
-
 
 
     @Nullable
@@ -89,24 +88,22 @@ public class NewBookingFragment extends Fragment {
 
     }
 
-    private void disableOtherCheckboxes(){
-        mCheckBoxRoomAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+    private void disableOtherCheckboxes() {
+        mCheckBoxRoomAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-                if (mCheckBoxRoomAll.isChecked()){
-                    for(CheckBox checkBox : checkBoxes)
-                    {
+                if (mCheckBoxRoomAll.isChecked()) {
+                    for (CheckBox checkBox : checkBoxes) {
                         checkBox.setEnabled(false);
-                        if(checkBox.isChecked()){
+                        if (checkBox.isChecked()) {
                             checkBox.toggle();
                             checkBox.setChecked(false);
 
                         }
                     }
                 }
-                if (!mCheckBoxRoomAll.isChecked()){
-                    for(CheckBox checkBox : checkBoxes)
-                    {
+                if (!mCheckBoxRoomAll.isChecked()) {
+                    for (CheckBox checkBox : checkBoxes) {
                         checkBox.setEnabled(true);
                     }
                 }
@@ -137,50 +134,49 @@ public class NewBookingFragment extends Fragment {
                     return;
                 }
 
-                if(!mCheckBoxRoom1.isChecked() &&
-                   !mCheckBoxRoom2.isChecked() &&
-                   !mCheckBoxRoom3.isChecked() &&
-                   !mCheckBoxRoom4.isChecked() &&
-                   !mCheckBoxRoom5.isChecked() &&
-                   !mCheckBoxRoom6.isChecked() &&
-                   !mCheckBoxRoomUnderHouse.isChecked() &&
-                   !mCheckBoxRoomAll.isChecked()){
+                if (!mCheckBoxRoom1.isChecked() &&
+                        !mCheckBoxRoom2.isChecked() &&
+                        !mCheckBoxRoom3.isChecked() &&
+                        !mCheckBoxRoom4.isChecked() &&
+                        !mCheckBoxRoom5.isChecked() &&
+                        !mCheckBoxRoom6.isChecked() &&
+                        !mCheckBoxRoomUnderHouse.isChecked() &&
+                        !mCheckBoxRoomAll.isChecked()) {
                     Toast.makeText(getActivity(), "At least one room should be selected!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-
-                if(mCheckBoxRoom1.isChecked() && mCheckBoxRoom1.isEnabled()){
+                if (mCheckBoxRoom1.isChecked() && mCheckBoxRoom1.isEnabled()) {
                     room1 = true;
                     numberOfRooms++;
                 }
-                if(mCheckBoxRoom2.isChecked() && mCheckBoxRoom2.isEnabled()){
+                if (mCheckBoxRoom2.isChecked() && mCheckBoxRoom2.isEnabled()) {
                     room2 = true;
                     numberOfRooms++;
                 }
-                if(mCheckBoxRoom3.isChecked() && mCheckBoxRoom3.isEnabled()){
+                if (mCheckBoxRoom3.isChecked() && mCheckBoxRoom3.isEnabled()) {
                     room3 = true;
                     numberOfRooms++;
                 }
-                if(mCheckBoxRoom4.isChecked() && mCheckBoxRoom4.isEnabled()){
+                if (mCheckBoxRoom4.isChecked() && mCheckBoxRoom4.isEnabled()) {
                     room4 = true;
                     numberOfRooms++;
                 }
-                if(mCheckBoxRoom5.isChecked() && mCheckBoxRoom5.isEnabled()){
+                if (mCheckBoxRoom5.isChecked() && mCheckBoxRoom5.isEnabled()) {
                     room5 = true;
                     numberOfRooms++;
                 }
-                if(mCheckBoxRoom6.isChecked() && mCheckBoxRoom6.isEnabled()){
+                if (mCheckBoxRoom6.isChecked() && mCheckBoxRoom6.isEnabled()) {
                     room6 = true;
                     numberOfRooms++;
                 }
-                if(mCheckBoxRoomUnderHouse.isChecked() && mCheckBoxRoomUnderHouse.isEnabled()){
+                if (mCheckBoxRoomUnderHouse.isChecked() && mCheckBoxRoomUnderHouse.isEnabled()) {
                     roomUnderHouse = true;
                     numberOfRooms++;
                 }
-                if(mCheckBoxRoomAll.isChecked() && mCheckBoxRoomAll.isEnabled()){
+                if (mCheckBoxRoomAll.isChecked() && mCheckBoxRoomAll.isEnabled()) {
                     allRooms = true;
-                    numberOfRooms=8;
+                    numberOfRooms = 8;
                 }
 
 
@@ -205,15 +201,15 @@ public class NewBookingFragment extends Fragment {
 
                 CollectionReference userRef = fStore.collection("users");
                 userRef.document(userID).collection("bookings").add(booking);
-                room1=false;
-                room2=false;
-                room3=false;
-                room4=false;
-                room5=false;
-                room6=false;
-                roomUnderHouse=false;
-                allRooms=false;
-                numberOfRooms=0;
+                room1 = false;
+                room2 = false;
+                room3 = false;
+                room4 = false;
+                room5 = false;
+                room6 = false;
+                roomUnderHouse = false;
+                allRooms = false;
+                numberOfRooms = 0;
                 Toast.makeText(getActivity(), "New booking has been created successfully!", Toast.LENGTH_SHORT).show();
             }
         });
