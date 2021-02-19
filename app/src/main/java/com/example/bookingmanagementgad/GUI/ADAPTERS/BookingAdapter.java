@@ -16,6 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAdapter.BookingHolder> {
 
     private OnItemClickListener listener;
+    private String rooms = "";
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -29,13 +30,42 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
 
     @Override
     protected void onBindViewHolder(@NonNull BookingHolder holder, int position, @NonNull Booking model) {
-        holder.mTextViewLastName.setText(model.getLastName());
-        holder.mTextViewFirstName.setText(model.getFirstName());
+        holder.mTextViewLastName.setText("Name: " + model.getLastName());
+        holder.mTextViewFirstName.setText("Surname: " + model.getFirstName());
         holder.mTextViewCheckInDate.setText("Check-in date: " + String.valueOf(model.getCheckInDate()));
         holder.mTextViewCheckOutDate.setText("Check-out date: " + String.valueOf(model.getCheckOutDate()));
         holder.mTextViewTypeOfBooking.setText("Type of booking: " + model.getTypeOfBooking());
-        holder.mTextViewPricePerNight.setText("Price/night: " + String.valueOf(model.getPricePerNight()));
-        holder.mTextViewNumberOfRooms.setText("No. of rooms: " + String.valueOf(model.getNumberOfRooms()));
+        holder.mTextViewPricePerNight.setText("Price/night: " + String.valueOf(model.getPricePerNight()) +" LEI");
+        holder.mTextViewNumberOfRooms.setText("Number of rooms: " + String.valueOf(model.getNumberOfRooms()));
+
+        if (model.isRoom1()) {
+            rooms = rooms.concat("1 ");
+        }
+        if (model.isRoom2()) {
+            rooms = rooms.concat("2 ");
+        }
+        if (model.isRoom3()) {
+            rooms = rooms.concat("3 ");
+        }
+        if (model.isRoom4()) {
+            rooms = rooms.concat("4 ");
+        }
+        if (model.isRoom5()) {
+            rooms = rooms.concat("5 ");
+        }
+        if (model.isRoom6()) {
+            rooms = rooms.concat("6 ");
+        }
+        if (model.isRoomUnderHouse()) {
+            rooms = rooms.concat("sub casa ");
+        }
+        if (model.isAllRooms()) {
+            rooms = "";
+            rooms = "Toata pensiunea";
+        }
+        holder.mTextViewRooms.setText("Rooms booked: " + rooms);
+
+        rooms = "";
 
 
 //        String checkInDate = model.getCheckInDate();
@@ -68,7 +98,7 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
         TextView mTextViewFirstName, mTextViewLastName;
         TextView mTextViewCheckInDate, mTextViewCheckOutDate;
         TextView mTextViewPricePerNight, mTextViewTypeOfBooking;
-        TextView mTextViewNumberOfNights, mTextViewNumberOfRooms;
+        TextView mTextViewRooms, mTextViewNumberOfRooms, mTextViewNumberOfNights;
 
 
         public BookingHolder(@NonNull View itemView) {
@@ -81,13 +111,13 @@ public class BookingAdapter extends FirestoreRecyclerAdapter<Booking, BookingAda
             mTextViewPricePerNight = itemView.findViewById(R.id.text_view_price_per_night);
             mTextViewTypeOfBooking = itemView.findViewById(R.id.text_view_type_of_booking);
             mTextViewNumberOfRooms = itemView.findViewById(R.id.text_view_number_of_rooms);
-//            mTextViewNumberOfNights = itemView.findViewById(R.id.text_view_number_of_nights);
+            mTextViewRooms = itemView.findViewById(R.id.text_view_rooms);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    if(position != RecyclerView.NO_POSITION && listener != null){
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
                         listener.onItemClick(getSnapshots().getSnapshot(position), position);
                     }
                 }
