@@ -38,8 +38,9 @@ public class UpdateSingleBookingFragment extends Fragment {
     private static final String TAG = "UpdateBookingFragment";
     private Button mButtonUpdateBooking;
     private EditText mUpdateFirstName, mUpdateLastName, mUpdatePhoneNumber;
-    private EditText mUpdatePricePerNightBooking, mUpdateNumberOfRoomsBooking;
-    private EditText mUpdateCheckInDateBooking, mUpdateCheckOutDateBooking;
+    private EditText mUpdatePricePerNightBooking;
+    private EditText mUpdateCheckInDateBooking;
+    private EditText mUpdateCheckOutDateBooking;
     private EditText mUpdateTypeOfBooking;
 
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
@@ -51,6 +52,7 @@ public class UpdateSingleBookingFragment extends Fragment {
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private String userID = fAuth.getCurrentUser().getUid();
 
+    private int updateNumberOfRooms=0;
     private boolean room1;
     private boolean room2;
     private boolean room3;
@@ -70,7 +72,6 @@ public class UpdateSingleBookingFragment extends Fragment {
         mUpdateFirstName = view.findViewById(R.id.editTextFirstNameUpdate);
         mUpdatePhoneNumber = view.findViewById(R.id.editTextPhoneNumberUpdate);
         mUpdatePricePerNightBooking = view.findViewById(R.id.editTextPricePerNightUpdate);
-        mUpdateNumberOfRoomsBooking = view.findViewById(R.id.editTextNumberOfRoomsUpdate);
         mUpdateCheckInDateBooking = view.findViewById(R.id.editTextCheckInDateUpdate);
         mUpdateCheckOutDateBooking = view.findViewById(R.id.editTextCheckOutDateUpdate);
         mUpdateTypeOfBooking = view.findViewById(R.id.editTextTypeOfBookingUpdate);
@@ -115,7 +116,6 @@ public class UpdateSingleBookingFragment extends Fragment {
                 mUpdateLastName.setText(booking.getLastName());
                 mUpdatePhoneNumber.setText(booking.getPhoneNumber());
                 mUpdatePricePerNightBooking.setText(String.valueOf(booking.getPricePerNight()));
-                mUpdateNumberOfRoomsBooking.setText(String.valueOf(booking.getNumberOfRooms()));
                 mUpdateCheckInDateBooking.setText(booking.getCheckInDate());
                 mUpdateCheckOutDateBooking.setText(booking.getCheckOutDate());
                 mUpdateTypeOfBooking.setText(booking.getTypeOfBooking());
@@ -189,27 +189,35 @@ public class UpdateSingleBookingFragment extends Fragment {
             public void onClick(View v) {
                 if (mUpdateCheckBoxRoom1.isChecked()) {
                     room1 = true;
+                    updateNumberOfRooms++;
                 }
                 if (mUpdateCheckBoxRoom2.isChecked()) {
                     room2 = true;
+                    updateNumberOfRooms++;
                 }
                 if (mUpdateCheckBoxRoom3.isChecked()) {
                     room3 = true;
+                    updateNumberOfRooms++;
                 }
                 if (mUpdateCheckBoxRoom4.isChecked()) {
                     room4 = true;
+                    updateNumberOfRooms++;
                 }
                 if (mUpdateCheckBoxRoom5.isChecked()) {
                     room5 = true;
+                    updateNumberOfRooms++;
                 }
                 if (mUpdateCheckBoxRoom6.isChecked()) {
                     room6 = true;
+                    updateNumberOfRooms++;
                 }
                 if (mUpdateCheckBoxRoomUnderHouse.isChecked()) {
                     roomUnderHouse = true;
+                    updateNumberOfRooms++;
                 }
                 if (mUpdateCheckBoxRoomAll.isChecked()) {
                     allRooms = true;
+                    updateNumberOfRooms=8;
                 }
 
                 Booking booking = new Booking(mUpdateFirstName.getText().toString(),
@@ -217,7 +225,7 @@ public class UpdateSingleBookingFragment extends Fragment {
                         mUpdatePhoneNumber.getText().toString(),
                         mUpdateTypeOfBooking.getText().toString(),
                         Integer.parseInt(mUpdatePricePerNightBooking.getText().toString()),
-                        Integer.parseInt(mUpdateNumberOfRoomsBooking.getText().toString()),
+                        updateNumberOfRooms,
                         mUpdateCheckInDateBooking.getText().toString(),
                         mUpdateCheckOutDateBooking.getText().toString(), room1,
                         room2, room3, room4, room5, room6, roomUnderHouse, allRooms);
